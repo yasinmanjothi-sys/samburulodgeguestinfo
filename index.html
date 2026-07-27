@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soroi Samburu Lodge — Guest Information Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SOROI SAMBURU LODGE — DIGITAL GUEST GUIDE
+   Shared Soroi bush/earth palette (matches Larsens Camp + existing
+   SSL minibar/collateral). Brand-specific hex/fonts for Samburu
+   Lodge are still TBC per data/rules/design-rules.md — this is the
+   shared-system placeholder, not a confirmed property palette.
+   ============================================================ */
+:root{
+  --parchment:     #F0EBE3;
+  --parchment-mid: #E8E0D5;
+  --parchment-line:#D4C9B8;
+  --parchment-dark:#B8AA96;
+  --ink:           #2C2C2C;
+  --ink-mid:       #4A4035;
+  --ink-lt:        #766553;
+  --bronze:        #C4A265;
+  --earth:         #3D2B1F;
+  --gold:          #8B6914;
+  --sand:          #C4956A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;font-weight:300;background:var(--parchment);color:var(--ink-mid);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* Progress bar */
+#progress-bar{position:fixed;top:0;left:0;width:0;height:2px;background:var(--bronze);z-index:2000;pointer-events:none}
+
+/* Sticky nav */
+nav#site-nav{position:fixed;top:0;left:0;right:0;z-index:1500;display:flex;align-items:center;justify-content:space-between;padding:22px 24px;transition:padding .6s ease,background .6s ease,backdrop-filter .6s ease,border-color .6s ease;border-bottom:1px solid transparent}
+nav#site-nav.frosted{padding:14px 24px;background:rgba(240,235,227,.95);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom-color:var(--parchment-line)}
+.nav-brand{font-family:'Cinzel',serif;font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--earth)}
+.hamburger{cursor:pointer;display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:6px;z-index:1600}
+.hamburger span{display:block;width:22px;height:1px;background:var(--earth);transition:all .35s ease;transform-origin:center}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Nav overlay */
+.nav-overlay{display:none;position:fixed;inset:0;z-index:1450;background:var(--parchment);flex-direction:column;align-items:center;justify-content:center;gap:14px;overflow-y:auto;padding:90px 24px 60px}
+.nav-overlay.open{display:flex}
+.nav-overlay a{font-family:'Cinzel',serif;font-weight:400;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);transition:color .2s ease}
+.nav-overlay a:hover{color:var(--bronze)}
+.nav-overlay-close{position:absolute;top:26px;right:24px;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-lt);cursor:pointer;background:none;border:none}
+
+/* Typography */
+h1,h2,h3,h4{font-family:'Cinzel',serif;color:var(--earth)}
+h2{font-size:clamp(26px,6vw,32px);font-weight:400;line-height:1.25;letter-spacing:.03em}
+h3{font-size:18px;font-weight:400;letter-spacing:.04em}
+h4{font-size:15px;font-weight:400;letter-spacing:.03em}
+.label{font-family:'Poppins',sans-serif;font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);display:block;margin-bottom:14px}
+p{font-size:16px;font-weight:300;line-height:1.8;color:var(--ink-mid)}
+p+p{margin-top:14px}
+
+/* Layout */
+.container{max-width:680px;margin:0 auto;padding:0 24px}
+.rule{display:block;height:1px;width:48px;background:var(--bronze);margin:18px 0 28px}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* Photo placeholder */
+.photo-ph{background:var(--parchment-mid);border:1px solid var(--bronze);position:relative;display:flex;align-items:center;justify-content:center;min-height:220px;text-align:center;overflow:hidden}
+.photo-ph .ph-label{font-style:italic;font-weight:300;font-size:13px;color:var(--ink-lt);padding:0 24px;line-height:1.7;position:relative;z-index:1}
+.photo-ph img.ph-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+
+/* TBC highlight */
+.tbc{color:var(--gold);font-weight:400}
+
+/* Sections */
+section.page-section{padding:60px 0}
+section.page-section:nth-of-type(even){background:var(--parchment-mid)}
+
+/* Bullet list */
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.bullet-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:300;line-height:1.7;color:var(--ink-mid)}
+.bullet-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--bronze);margin-top:8px;flex-shrink:0}
+
+/* Info / Wi-Fi block */
+.info-block{margin-top:28px;padding:22px 24px;background:var(--parchment-mid);border-left:2px solid var(--bronze)}
+section.page-section:nth-of-type(even) .info-block{background:var(--parchment)}
+.info-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:7px 0;border-bottom:1px solid var(--parchment-line);font-size:14px}
+.info-row:last-child{border-bottom:none}
+.info-row .k{color:var(--ink-lt);font-size:12px;letter-spacing:.04em}
+.info-row .v{font-family:'Cinzel',serif;color:var(--earth);font-size:15px;text-align:right}
+.info-row .v-wrap{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+
+.copy-btn{font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);background:none;border:1px solid var(--bronze);padding:3px 8px;cursor:pointer;transition:background .2s ease,color .2s ease;flex-shrink:0}
+.copy-btn:hover,.copy-btn.copied{background:var(--bronze);color:#fff}
+
+/* Quick-facts grid (structured / corporate-lean layout) */
+.quick-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:24px}
+.qf-cell{background:var(--parchment);padding:16px 18px}
+section.page-section:nth-of-type(even) .qf-cell{background:var(--parchment-mid)}
+.qf-cell .k{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:5px}
+.qf-cell .v{font-family:'Cinzel',serif;font-size:15px;color:var(--earth)}
+
+/* Weather card */
+.weather-card{margin-top:24px;padding:20px 22px;background:var(--parchment-mid);border:1px solid var(--parchment-line);display:flex;align-items:center;gap:20px}
+section.page-section:nth-of-type(even) .weather-card{background:var(--parchment)}
+.weather-icon{width:64px;height:64px;flex-shrink:0}
+.weather-icon svg{width:64px;height:64px;display:none}
+.weather-icon svg.active{display:block}
+.weather-icon .wi-stroke{fill:none;stroke:var(--bronze);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.weather-icon .wi-fill{fill:var(--bronze)}
+.moon-icon .wi-stroke{fill:none;stroke:var(--bronze);stroke-width:1.5}
+.moon-icon .wi-fill-dark{fill:var(--ink-lt)}
+.moon-icon .wi-fill-light{fill:var(--parchment-mid)}
+.weather-info{flex:1;min-width:0}
+.weather-temp{font-family:'Cinzel',serif;font-size:30px;color:var(--earth);line-height:1.1}
+.weather-desc{font-size:14px;color:var(--ink-mid);margin-top:2px}
+.weather-detail{font-size:12px;color:var(--ink-lt);margin-top:6px;letter-spacing:.02em}
+.weather-sun{font-size:12px;color:var(--ink-lt);margin-top:4px;letter-spacing:.02em}
+.weather-sun span{color:var(--earth);font-family:'Cinzel',serif;font-size:12px}
+.weather-tip{font-size:12px;color:var(--gold);margin-top:8px;font-style:italic}
+.weather-card.is-error .weather-desc{color:var(--gold)}
+
+@keyframes wi-sun-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes wi-cloud-drift{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+@keyframes wi-cloud-drift-slow{0%,100%{transform:translateX(0)}50%{transform:translateX(-2.5px)}}
+@keyframes wi-rain-fall{0%{opacity:0;transform:translateY(-3px)}45%{opacity:1}100%{opacity:0;transform:translateY(5px)}}
+.wi-rays{transform-box:fill-box;transform-origin:center;animation:wi-sun-rotate 90s linear infinite}
+.wi-cloud-front{transform-box:fill-box;transform-origin:center;animation:wi-cloud-drift 10s ease-in-out infinite}
+.wi-cloud-back{transform-box:fill-box;transform-origin:center;animation:wi-cloud-drift-slow 14s ease-in-out infinite}
+.wi-drop{animation:wi-rain-fall 1.6s ease-in infinite}
+.wi-drop:nth-child(2){animation-delay:.3s}
+.wi-drop:nth-child(3){animation-delay:.6s}
+
+/* Moon phase */
+.moon-row{display:flex;align-items:center;gap:16px}
+.moon-icon{width:48px;height:48px;flex-shrink:0}
+.moon-icon svg{width:48px;height:48px;display:none}
+.moon-icon svg.active{display:block}
+.moon-info{flex:1;min-width:0}
+.moon-phase-name{font-family:'Cinzel',serif;font-size:16px;color:var(--earth)}
+.moon-illum{font-size:12px;color:var(--ink-lt);margin-top:4px;letter-spacing:.02em}
+
+/* Currency widget */
+.currency-card{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line)}
+.currency-cell{background:var(--parchment);padding:16px 18px;text-align:center}
+section.page-section:nth-of-type(even) .currency-cell{background:var(--parchment-mid)}
+.currency-cell .k{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:6px}
+.currency-cell .v{font-family:'Cinzel',serif;font-size:17px;color:var(--earth)}
+.currency-note{font-size:11px;color:var(--ink-lt);margin-top:10px;font-style:italic}
+
+/* Currency converter */
+.converter-row{display:flex;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:20px}
+.converter-amount,.converter-from{background:var(--parchment);border:none;font-family:'Cinzel',serif;font-size:17px;color:var(--earth);padding:14px 16px;flex:1;min-width:0;-webkit-appearance:none;appearance:none;border-radius:0}
+section.page-section:nth-of-type(even) .converter-amount,
+section.page-section:nth-of-type(even) .converter-from{background:var(--parchment-mid)}
+.converter-amount:focus,.converter-from:focus{outline:2px solid var(--bronze);outline-offset:-2px}
+.converter-from{flex:0 0 92px;cursor:pointer;font-size:14px}
+.converter-results{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);border-top:none}
+.converter-cell{background:var(--parchment);padding:14px 8px;text-align:center}
+section.page-section:nth-of-type(even) .converter-cell{background:var(--parchment-mid)}
+.converter-cell.is-from{background:var(--bronze)}
+.converter-cell.is-from .k,.converter-cell.is-from .v{color:#fff}
+.converter-cell .k{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:5px}
+.converter-cell .v{font-family:'Cinzel',serif;font-size:13px;color:var(--earth)}
+@media(max-width:480px){.converter-results{grid-template-columns:1fr 1fr}}
+
+/* Contact CTA (front desk) */
+.contact-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cta-btn{flex:1;min-width:150px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 12px;text-align:center;border:1px solid var(--bronze);background:var(--parchment);transition:background .2s ease,color .2s ease}
+section.page-section:nth-of-type(even) .cta-btn{background:var(--parchment-mid)}
+.cta-btn:hover{background:var(--bronze);color:#fff}
+.cta-btn:hover .cta-sub{color:#fff}
+.cta-label{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.06em}
+.cta-sub{font-size:11px;color:var(--ink-lt)}
+.cta-qr{width:84px;height:84px;background:#fff;padding:6px;border:1px solid var(--parchment-line)}
+.cta-btn:hover .cta-qr{border-color:#fff}
+
+/* Schedule list */
+.sched-list{list-style:none;margin-top:18px;display:flex;flex-direction:column}
+.sched-list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--parchment-line);font-size:14px}
+.sched-list li:last-child{border-bottom:none}
+.sched-list li span:first-child{color:var(--ink-lt)}
+.sched-list li span:last-child{font-family:'Cinzel',serif;color:var(--earth);text-align:right}
+
+/* Activity / pricing blocks */
+.activity-block{margin-top:28px;padding-top:22px;border-top:1px solid var(--parchment-line)}
+.activity-block:first-of-type{margin-top:24px;padding-top:0;border-top:none}
+.activity-block h4{margin-bottom:6px}
+.spa-pdf-preview{margin-top:16px;line-height:0}
+.spa-pdf-preview img{width:100%;border:1px solid var(--parchment-line);cursor:pointer;transition:opacity .2s ease}
+.spa-pdf-preview img:hover{opacity:.9}
+.activity-price{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);margin-top:6px;display:block}
+.activity-meta{font-size:12px;color:var(--ink-lt);margin-top:2px}
+
+/* Species cards (Samburu Special Five — informational, not interactive) */
+.species-grid{display:flex;flex-direction:column;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:24px}
+.species-card{background:var(--parchment);padding:20px 22px}
+section.page-section:nth-of-type(even) .species-card{background:var(--parchment-mid)}
+.species-name{font-family:'Cinzel',serif;font-size:15px;color:var(--earth);letter-spacing:.03em}
+.species-latin{font-size:11px;font-style:italic;color:var(--ink-lt);margin-top:2px}
+.species-card p{font-size:13px;margin-top:8px}
+
+/* Wayfinding / property map (schematic diagram, not a photo) */
+.zone-map{margin-top:24px;border:1px solid var(--parchment-line);background:var(--parchment)}
+section.page-section:nth-of-type(even) .zone-map{background:var(--parchment-mid)}
+.zone-map svg{width:100%;height:auto;display:block}
+.zone-map-note{font-size:12px;color:var(--ink-lt);padding:14px 18px;border-top:1px solid var(--parchment-line);font-style:italic}
+.zone{fill:var(--parchment-mid);stroke:var(--bronze);stroke-width:1;cursor:pointer;transition:fill .2s ease}
+section.page-section:nth-of-type(even) .zone{fill:var(--parchment)}
+.zone:hover,.zone.active{fill:var(--bronze)}
+.zone-label{font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.04em;fill:var(--earth);text-anchor:middle;pointer-events:none}
+.zone-river{fill:none;stroke:var(--sand);stroke-width:3;opacity:.55}
+.zone-detail{padding:16px 22px;border-top:1px solid var(--parchment-line);min-height:52px;font-size:13px;color:var(--ink-mid)}
+.zone-detail .zd-title{font-family:'Cinzel',serif;font-size:13px;color:var(--earth);display:block;margin-bottom:4px}
+
+/* CWC / sustainability block */
+.cwc-block{margin-top:24px;padding:20px 22px;background:var(--parchment-mid);border:1px solid var(--parchment-line);font-size:12px;color:var(--ink-lt);line-height:1.8}
+section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
+.cwc-block strong{color:var(--earth);font-weight:500}
+
+/* Reference / A-Z index */
+.az-index{columns:2;column-gap:24px;margin-top:20px}
+.az-index a{display:block;font-size:13px;color:var(--ink-mid);padding:5px 0;break-inside:avoid;border-bottom:1px dotted var(--parchment-line)}
+.az-index a:hover{color:var(--bronze)}
+
+/* Closing line */
+.closing-line{font-style:italic;font-weight:300;font-size:15px;color:var(--ink-mid);text-align:center;margin-top:48px}
+
+/* Soroi Collection — destination tags */
+.discover-destinations{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding:20px 0;border-top:1px solid var(--parchment-line);border-bottom:1px solid var(--parchment-line);margin:24px 0}
+.dest-tag{font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--bronze)}
+.dest-sep{font-size:13px;color:var(--bronze);opacity:.4}
+
+/* Soroi Collection — editorial property grid */
+.discover-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:8px}
+.prop-editorial{position:relative;height:190px;overflow:hidden;background:var(--earth);display:block}
+.prop-ph{position:absolute;inset:0;z-index:0;border:none;min-height:0;border-radius:0}
+.prop-editorial-img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.prop-editorial-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(20,14,10,.8) 0%,rgba(20,14,10,.15) 55%,transparent 100%)}
+.prop-editorial-content{position:absolute;z-index:3;bottom:0;left:0;right:0;padding:14px}
+.prop-ed-header{display:flex;flex-direction:column;gap:4px}
+.prop-ed-region{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze)}
+.prop-ed-name{font-family:'Cinzel',serif;font-size:14px;font-weight:400;color:#fff;letter-spacing:.03em;line-height:1.25}
+
+/* Soroi Collection — get in touch */
+.discover-contact-strip{margin-top:32px;padding-top:28px;border-top:1px solid var(--parchment-line)}
+.discover-contact-left h3{margin-bottom:14px}
+.contact-row{display:flex;flex-direction:column;gap:8px}
+.contact-pair{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px}
+.cl-label{color:var(--ink-lt);text-transform:uppercase;letter-spacing:.1em;font-size:11px}
+.cl-val{font-family:'Cinzel',serif;color:var(--earth)}
+.discover-social{margin-top:24px}
+.discover-social p{font-size:12px;color:var(--ink-lt);margin-bottom:8px}
+.discover-social-handle{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;color:var(--earth)}
+.social-icons{display:flex;gap:18px;margin-top:14px}
+.social-icons a{color:var(--bronze)}
+
+@media(max-width:420px){
+  .discover-grid{grid-template-columns:1fr}
+  .prop-editorial{height:220px}
+}
+
+/* ============================================================ HERO */
+#welcome{padding:0}
+.hero-wrap{position:relative;height:100vh;min-height:560px;overflow:hidden;background:var(--earth)}
+.hero-wrap .photo-ph{position:absolute;inset:0;min-height:100%;border:none;border-radius:0}
+.hero-overlay{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 52px;background:linear-gradient(to top,rgba(20,14,10,.88) 0%,rgba(20,14,10,.35) 65%,transparent 100%)}
+.hero-wordmark{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(32px,8vw,48px);letter-spacing:.2em;color:#fff;text-align:center}
+.hero-rule{width:60px;height:1px;background:var(--bronze);margin:16px auto;display:block}
+.hero-sub{font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:center;display:block}
+.hero-logo-wrap{text-align:center;margin-bottom:18px}
+.hero-logo-wrap img{width:64px;margin:0 auto;opacity:.92}
+.hero-logo-tbc{display:block;text-align:center;font-size:11px;font-style:italic;margin-top:14px}
+
+.welcome-body{padding:60px 0}
+
+/* Responsive */
+@media(max-width:520px){
+  .quick-facts{grid-template-columns:1fr 1fr}
+  .currency-card{grid-template-columns:1fr}
+  .contact-cta{flex-direction:column}
+  .az-index{columns:1}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav id="site-nav">
+  <a href="#welcome" class="nav-brand">Soroi Samburu Lodge</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-overlay" id="nav-overlay">
+  <button class="nav-overlay-close" id="nav-close">Close</button>
+  <a href="#welcome">Welcome</a>
+  <a href="#your-stay">Your Stay</a>
+  <a href="#dining">Dining</a>
+  <a href="#pool-spa">Pool &amp; Spa</a>
+  <a href="#game-drives">Game Drives</a>
+  <a href="#activities">Activities</a>
+  <a href="#kids-club">Kids Club</a>
+  <a href="#special-five">Northern Specials</a>
+  <a href="#services">Services &amp; Payment</a>
+  <a href="#sustainability">Sustainability</a>
+  <a href="#safety">Safety</a>
+  <a href="#find-your-way">Find Your Way</a>
+  <a href="#reference">Reference</a>
+  <a href="#soroi-collection">Soroi Collection</a>
+</div>
+
+<!-- ============================================================ SECTION 1 — WELCOME -->
+<section id="welcome">
+  <div class="hero-wrap">
+    <div class="photo-ph">
+      <span class="ph-label">[Hero photo — rim-flow pool facing Koitogo Hills &amp; Mount Ololokwe, or Ewaso Nyiro riverfront at golden hour. Yasin to supply.]</span>
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-logo-wrap">
+        <img src="assets/soroicollectionblack.png" alt="Soroi Collection caracal logo" onerror="this.style.display='none'">
+      </div>
+      <span class="hero-wordmark">SOROI SAMBURU LODGE</span>
+      <span class="hero-rule"></span>
+      <span class="hero-sub">Samburu National Reserve, Kenya</span>
+      <span class="hero-logo-tbc tbc">[TBC — Yasin to drop the Soroi caracal logo PNG into this guide's assets/ folder as soroicollectionblack.png]</span>
+    </div>
+  </div>
+
+  <div class="welcome-body container">
+    <div class="reveal">
+      <span class="label">Welcome &amp; Karibu</span>
+      <h2>Dear Intrepid Traveller</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="reveal d1">
+      <p>We are delighted to host you at our boutique lodge in the most beautiful setting, on and along the mighty Ewaso Nyiro. Be sure to visit our spa after its remodelling and our sundowner deck — not forgetting the rim-flow swimming pool facing the Koitogo Hills, with Mount Ololokwe to the right.</p>
+      <p>Our team, consisting mainly of indigenous Samburu, is dedicated to offering you the best service and cuisine using local produce. Soroi Samburu Lodge is an eco-friendly lodge committed to sustainable tourism, ensuring the local community benefits from our presence.</p>
+      <p>We will endeavour to go above and beyond to ensure your stay is nothing less than exceptional.</p>
+      <p style="margin-top:18px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:.04em;color:var(--earth)">Warm regards,<br>Your Soroi Samburu Lodge Manager</p>
+    </div>
+
+    <div class="quick-facts reveal d2">
+      <div class="qf-cell"><span class="k">Check-in</span><span class="v">12:00 pm</span></div>
+      <div class="qf-cell"><span class="k">Check-out</span><span class="v">10:00 am</span></div>
+      <div class="qf-cell"><span class="k">Rooms</span><span class="v">50 — 32 Standard, 10 Superior, 3 Family</span></div>
+      <div class="qf-cell"><span class="k">Opened</span><span class="v">July 2025</span></div>
+    </div>
+
+    <div class="info-block reveal d3">
+      <span class="label" style="margin-bottom:12px;">Right Now</span>
+      <div class="weather-card" id="weather-card" style="margin-top:0;padding:0;background:none">
+        <div class="weather-icon" id="weather-icon">
+          <svg viewBox="0 0 64 64" class="wi-clear"><g class="wi-rays wi-stroke">
+            <line x1="43.5" y1="32" x2="50" y2="32"/>
+            <line x1="40.1" y1="40.1" x2="44.7" y2="44.7"/>
+            <line x1="32" y1="43.5" x2="32" y2="50"/>
+            <line x1="23.9" y1="40.1" x2="19.3" y2="44.7"/>
+            <line x1="20.5" y1="32" x2="14" y2="32"/>
+            <line x1="23.9" y1="23.9" x2="19.3" y2="19.3"/>
+            <line x1="32" y1="20.5" x2="32" y2="14"/>
+            <line x1="40.1" y1="23.9" x2="44.7" y2="19.3"/>
+          </g><circle class="wi-stroke" cx="32" cy="32" r="9"/></svg>
+
+          <svg viewBox="0 0 64 64" class="wi-partly"><g class="wi-rays wi-stroke" style="transform-origin:44px 18px;animation:wi-sun-rotate 90s linear infinite">
+            <line x1="44" y1="9" x2="44" y2="4"/>
+            <line x1="51.3" y1="11.7" x2="55.1" y2="7.9"/>
+            <line x1="53" y1="18" x2="58" y2="18"/>
+          </g><circle class="wi-stroke" cx="44" cy="18" r="7"/>
+          <path class="wi-stroke wi-cloud-front" d="M10 46c-5 0-8-4-8-8s3-8 8-8c1-6 6-10 13-10s11 4 13 10c5 0 8 4 8 8s-3 8-8 8H10z"/></svg>
+
+          <svg viewBox="0 0 64 64" class="wi-cloudy">
+            <path class="wi-stroke wi-cloud-back" d="M34 27c-4 0-6-3-6-6s2-6 6-6c1-4 4-7 9-7s8 3 9 7c4 0 6 3 6 6s-2 6-6 6H34z"/>
+            <path class="wi-stroke wi-cloud-front" d="M10 48c-5 0-8-4-8-8s3-8 8-8c1-6 6-10 13-10s11 4 13 10c5 0 8 4 8 8s-3 8-8 8H10z"/></svg>
+
+          <svg viewBox="0 0 64 64" class="wi-rain">
+            <path class="wi-stroke wi-cloud-front" d="M10 38c-5 0-8-4-8-8s3-8 8-8c1-6 6-10 13-10s11 4 13 10c5 0 8 4 8 8s-3 8-8 8H10z"/>
+            <line class="wi-stroke wi-drop" x1="20" y1="44" x2="17" y2="52"/>
+            <line class="wi-stroke wi-drop" x1="32" y1="44" x2="29" y2="52"/>
+            <line class="wi-stroke wi-drop" x1="44" y1="44" x2="41" y2="52"/></svg>
+
+          <svg viewBox="0 0 64 64" class="wi-storm">
+            <path class="wi-stroke wi-cloud-front" d="M10 34c-5 0-8-4-8-8s3-8 8-8c1-6 6-10 13-10s11 4 13 10c5 0 8 4 8 8s-3 8-8 8H10z"/>
+            <path class="wi-fill" d="M35 30 27 44 33 44 29 58 43 42 36 42 40 30z"/>
+            <line class="wi-stroke wi-drop" x1="16" y1="44" x2="13" y2="52"/>
+            <line class="wi-stroke wi-drop" x1="50" y1="44" x2="47" y2="52"/></svg>
+        </div>
+        <div class="weather-info">
+          <div class="weather-temp" id="weather-temp">--&deg;</div>
+          <div class="weather-desc" id="weather-desc">Loading current conditions&hellip;</div>
+          <div class="weather-detail" id="weather-detail"></div>
+          <div class="weather-sun" id="weather-sun"></div>
+          <div class="weather-tip" id="weather-tip"></div>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:12px;font-style:italic;color:var(--ink-lt)">[Unverified] Forecast is centred on an approximate Samburu National Reserve coordinate — exact lodge GPS not yet confirmed by Yasin.</p>
+    </div>
+
+    <div class="info-block reveal d4">
+      <span class="label" style="margin-bottom:12px;">Tonight's Sky</span>
+      <div class="moon-row">
+        <div class="moon-icon" id="moon-icon">
+          <svg viewBox="0 0 48 48" class="moon-new">
+            <defs><clipPath id="moon-clip"><circle cx="24" cy="24" r="16"/></clipPath></defs>
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="64" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-waxing-crescent">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="48" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-first-quarter">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="40" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-waxing-gibbous">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="32" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-full">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-waning-gibbous">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="16" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-last-quarter">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="8" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+          <svg viewBox="0 0 48 48" class="moon-waning-crescent">
+            <g clip-path="url(#moon-clip)">
+              <circle cx="24" cy="24" r="16" class="wi-fill-dark"/>
+              <circle cx="0" cy="24" r="16" class="wi-fill-light"/>
+            </g>
+            <circle cx="24" cy="24" r="16" class="wi-stroke"/>
+          </svg>
+        </div>
+        <div class="moon-info">
+          <div class="moon-phase-name" id="moon-phase-name">—</div>
+          <div class="moon-illum" id="moon-illum"></div>
+        </div>
+      </div>
+      <p style="margin-top:14px;font-size:13px;">Samburu's low light pollution makes for exceptional stargazing from the sundowner deck or your veranda — ask your room steward about clear-sky nights.</p>
+    </div>
+
+    <div class="info-block reveal d5">
+      <span class="label" style="margin-bottom:12px;">Wi-Fi</span>
+      <div class="info-row"><span class="k">Network</span><span class="v">ssl</span></div>
+      <div class="info-row"><span class="k">Password</span><span class="v-wrap"><span class="v">ssl@2025</span><button class="copy-btn" data-copy="ssl@2025">Copy</button></span></div>
+    </div>
+
+    <div class="reveal d5" style="margin-top:28px">
+      <span class="label" style="margin-bottom:12px;">Front Desk — One Tap Away</span>
+      <div class="contact-cta">
+        <a class="cta-btn" href="https://wa.me/254758585932" target="_blank" rel="noopener">
+          <span class="cta-label">WhatsApp Reception</span>
+          <span class="cta-sub">+254 758 585 932</span>
+        </a>
+        <a class="cta-btn" href="tel:+254758585932">
+          <span class="cta-label">Call the Lodge</span>
+          <span class="cta-sub">Wycliffe, General Manager</span>
+        </a>
+      </div>
+      <p style="margin-top:12px;font-size:12px;color:var(--ink-lt)">Assistant Manager Bernard can also be reached on <a href="tel:+254758584138" style="color:var(--earth);text-decoration:underline">+254 758 584 138</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 2 — YOUR STAY -->
+<section id="your-stay" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Your Stay</span>
+      <h2>In &amp; Around Your Room</h2>
+      <span class="rule"></span>
+    </div>
+    <ul class="bullet-list reveal d1">
+      <li><strong>Children</strong> — welcome throughout, always accompanied by an adult.</li>
+      <li><strong>Electricity</strong> — the lodge runs on solar power with a backup generator. Flag any high-power appliances to the manager; switch off lights when not in use.</li>
+      <li><strong>Lighting</strong> — room lighting is solar-powered; please switch off when you leave your room.</li>
+      <li><strong>Mini-bar</strong> — provided in Superior and Executive Villa rooms. Ask reception if you'd like anything specific stocked.</li>
+      <li><strong>Showers</strong> — hot and cold available day and night. A stainless-steel bucket is provided to collect cold water while the hot water comes through; room stewards reuse this for cleaning and watering plants.</li>
+      <li><strong>Turn-down &amp; wake-up</strong> — turn-down service each evening, with hot water bottles on request. Your room steward will check nightly for your preferred wake-up time and morning drink.</li>
+      <li><strong>Valuables</strong> — a safe is provided in every room. Please leave the safe door open on checkout.</li>
+      <li><strong>Drinking water</strong> — filtered mineral water is available at the bar and via in-room dispensers; safe to drink and to brush your teeth with.</li>
+    </ul>
+    <div class="info-block reveal d2">
+      <span class="label" style="margin-bottom:10px">Community &amp; Bed Night Fees</span>
+      <p style="font-size:14px">Bed night fees are included in your stay and paid to the local community at the end of each month — one of the ways the lodge practises responsible tourism.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 3 — DINING -->
+<section id="dining" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Dining</span>
+      <h2>Meals &amp; Beverages</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">The main dining area is a warm, inviting space for every meal — or enjoy yours on the river deck, by the pool, or in the privacy of your room.</p>
+
+    <ul class="sched-list reveal d2">
+      <li><span>Breakfast</span><span>6:30 – 10:00 am</span></li>
+      <li><span>Lunch</span><span>1:00 – 2:30 pm</span></li>
+      <li><span>Dinner</span><span>7:30 – 9:30 pm</span></li>
+      <li><span>Lodge fireplace</span><span>From 6:00 pm</span></li>
+    </ul>
+
+    <div class="info-block reveal d3">
+      <span class="label" style="margin-bottom:10px">Extra Meals — Payable Directly</span>
+      <div class="info-row"><span class="k">Extra Lunch (adult)</span><span class="v">USD 40</span></div>
+      <div class="info-row"><span class="k">Packed / Takeaway Lunch (adult)</span><span class="v">USD 30–35</span></div>
+      <div class="info-row"><span class="k">Extra / Takeaway Lunch (child)</span><span class="v">USD 20</span></div>
+      <p style="margin-top:12px;font-size:12px;font-style:italic;color:var(--gold)">[Unverified] The source guest-information document lists two slightly different figures for packed/takeaway lunch (USD 30 on one page, USD 35 on another) — confirm the correct rate with Yasin before publishing.</p>
+    </div>
+
+    <p class="reveal d4" style="margin-top:24px">Drinks are billed according to consumption unless you're on an inclusive package. Your waiter will give you a daily voucher — sign it and add your room number; your final bill is ready at reception just before departure.</p>
+    <p class="reveal d4">Let your guide know the day before for a picnic breakfast or lunch. Special dietary requirements are always welcome — just let the Lodge Manager know.</p>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 4 — POOL & SPA -->
+<section id="pool-spa" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Pool &amp; Spa</span>
+      <h2>Rim-Flow Pool, Spa &amp; Sundowner Deck</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="photo-ph reveal d1"><span class="ph-label">[Photo — rim-flow infinity pool facing Koitogo Hills / Mount Ololokwe. Yasin to supply.]</span></div>
+
+    <ul class="sched-list reveal d2">
+      <li><span>Swimming pool</span><span>8:00 am – 6:00 pm</span></li>
+    </ul>
+    <p class="reveal d2">Pool towels are provided poolside — no need to bring one from your room. There is no lifeguard on duty; children must use the children's pool under the supervision of a parent or guardian.</p>
+
+    <div class="info-block reveal d3">
+      <span class="label" style="margin-bottom:10px">The Spa</span>
+      <p style="font-size:14px">Recently remodelled. Book your session through reception. The full treatment menu — massages, facials, manicures &amp; pedicures, and signature body scrubs — is below.</p>
+      <div class="spa-pdf-preview">
+        <a href="assets/samburu-lodge-spa-menu.pdf" target="_blank" rel="noopener">
+          <img src="assets/samburu-lodge-spa-menu-p1.png" alt="Soroi Samburu Lodge Ashe Spa menu, page 1 — massages">
+        </a>
+        <a href="assets/samburu-lodge-spa-menu.pdf" target="_blank" rel="noopener" style="margin-top:2px;display:block">
+          <img src="assets/samburu-lodge-spa-menu-p2.png" alt="Soroi Samburu Lodge Ashe Spa menu, page 2 — beauty treatments, body scrubs and etiquette">
+        </a>
+      </div>
+      <a class="cta-btn" style="margin-top:14px" href="assets/samburu-lodge-spa-menu.pdf" target="_blank" rel="noopener">
+        <span class="cta-label">View Full Spa Menu (PDF)</span>
+        <span class="cta-sub">2 pages · tap to open or zoom</span>
+      </a>
+    </div>
+
+    <p class="reveal d4" style="margin-top:24px">As the sun dips below the horizon, the Sundowner Deck is the place to be — fine wines and signature cocktails overlooking the Samburu wilderness.</p>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 5 — GAME DRIVES -->
+<section id="game-drives" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Game Drives</span>
+      <h2>Into the Reserve</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">If you've booked a game package, your adventure happens in our 4x4 safari-equipped Land Cruisers — you may share the vehicle with other guests. Let us know in advance if you'd prefer a private vehicle.</p>
+
+    <ul class="sched-list reveal d2">
+      <li><span>Morning game drive</span><span>6:00 am, picnic breakfast — or lodge breakfast up to 10:00 am</span></li>
+      <li><span>Afternoon game drive</span><span>4:00 – 6:30 pm</span></li>
+    </ul>
+
+    <div class="info-block reveal d3">
+      <span class="label" style="margin-bottom:10px">Shared Game Drive Rates</span>
+      <div class="info-row"><span class="k">Per adult (min. 2, shared)</span><span class="v">USD 115</span></div>
+      <div class="info-row"><span class="k">Per child</span><span class="v">USD 70</span></div>
+      <div class="info-row"><span class="k">Exclusive vehicle — peak season</span><span class="v">USD 400/day</span></div>
+      <div class="info-row"><span class="k">Exclusive vehicle — shoulder/green season</span><span class="v">USD 350/day</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 6 — ACTIVITIES -->
+<section id="activities" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Activities</span>
+      <h2>Beyond the Game Drive</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">All bookings can be made through reception or your Lodge Manager.</p>
+
+    <div class="activity-block reveal d2">
+      <h4>Private Bush Breakfast</h4>
+      <p style="font-size:13px">An exclusive breakfast in the heart of the savannah, prepared before your eyes by our chefs.</p>
+      <span class="activity-meta">Minimum 2 guests</span>
+      <span class="activity-price">USD 110 per adult · USD 55 per child</span>
+    </div>
+
+    <div class="activity-block reveal d2">
+      <h4>Bush Walk</h4>
+      <p style="font-size:13px">Learn about medicinal plants, birdlife and animal tracks with your guide. Approx. 2 hours.</p>
+      <span class="activity-meta">Adults only · Minimum 2 guests</span>
+      <span class="activity-price">USD 75 per adult</span>
+    </div>
+
+    <div class="activity-block reveal d2">
+      <h4>Cultural Visit to a Samburu Village</h4>
+      <p style="font-size:13px">Experience Samburu traditions and daily life alongside Samburu women — from milking animals to preparing traditional meals. 12km, approx. 20-minute drive.</p>
+      <span class="activity-meta">Minimum 2 guests</span>
+      <span class="activity-price">USD 65 per adult · USD 35 per child</span>
+    </div>
+
+    <div class="activity-block reveal d3">
+      <h4>Exclusive Sunset Dinner at the Boma</h4>
+      <p style="font-size:13px">A traditional outdoor dining experience around a bonfire in a Samburu boma, overlooking a waterhole. Buffet of local and international dishes, with stories, music and dance from the Samburu people.</p>
+      <span class="activity-meta">Minimum 12 guests</span>
+      <span class="activity-price">USD 60 per adult · USD 30 per child</span>
+    </div>
+
+    <div class="activity-block reveal d3">
+      <h4>Birdwatching in Camp</h4>
+      <p style="font-size:13px">Samburu is home to over 400 native bird species. A local bird guide leads you along the Ewaso Nyiro river forest line, including the Somali bee-eater and Somali ostrich.</p>
+      <span class="activity-meta">Approx. 1 hour</span>
+      <span class="activity-price">Free</span>
+    </div>
+
+    <div class="activity-block reveal d4">
+      <h4>Underground Photographers' Hide</h4>
+      <p style="font-size:13px">A year-round hide accessible directly from the lodge, with comfortable swivel chairs and space for up to 4 guests. Booked on a shared or exclusive-use basis, subject to availability. Free to use during the wet season.</p>
+      <div class="info-row" style="margin-top:8px"><span class="k">3 hrs shared, ground package (min. 2)</span><span class="v">USD 60</span></div>
+      <div class="info-row"><span class="k">3 hrs shared, full board (min. 2)</span><span class="v">USD 120</span></div>
+      <div class="info-row"><span class="k">Exclusive use, 24 hrs (max. 4 guests)</span><span class="v">USD 1,040</span></div>
+    </div>
+
+    <div class="activity-block reveal d4">
+      <h4>Full-Day Excursion — Reteti Elephant Sanctuary</h4>
+      <p style="font-size:13px">A community-managed elephant sanctuary caring for orphaned and abandoned calves since 2016. Your visit directly supports its conservation work.</p>
+      <span class="activity-meta">Minimum 2 guests · Entrance fee payable directly</span>
+      <span class="activity-price">USD 445 per vehicle + USD 75 pp entrance · USD 50 per child</span>
+    </div>
+
+    <p class="reveal d5" style="margin-top:24px;font-size:13px;color:var(--ink-lt)">Groups of more than 6 receive a further 10% discount on select activities — ask reception for details.</p>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 7 — KIDS CLUB -->
+<section id="kids-club" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Soroi Kids Club</span>
+      <h2>Young Adventurers Welcome</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">At the Soroi Kids Club tent, children unleash their imagination and curiosity through activities suitable for all ages — from bush survival skills to storytelling and craft.</p>
+    <ul class="bullet-list reveal d2">
+      <li><strong>Samburu's Creation</strong> — a guided "smelly mocktail" party using scents found around camp.</li>
+      <li><strong>Samburu Snapshots</strong> — kids get a special camera to capture the small, easily-missed details of nature.</li>
+      <li><strong>Map Sticks</strong> — learn traditional Samburu wayfinding by building a landmark stick during a short walk.</li>
+      <li><strong>Bow &amp; Arrows</strong> — bush survival techniques, making and aiming bow and arrow at a target.</li>
+      <li><strong>Wildlife Reporter</strong> — kids act as "Animal Planet" reporters, writing about the lodge, its wildlife, or the Samburu people.</li>
+      <li><strong>Bird Spotting</strong> — learn how beak shape reflects diet, and why the Special Five are adapted to Samburu's arid habitat.</li>
+      <li><strong>Bush Walks</strong> — from reception to the water point, spotting birds, tracks and wilderness signs.</li>
+      <li><strong>Cultural Activities</strong> — an introduction to Samburu warrior culture and lifestyle; longer stays can include village visits.</li>
+      <li><strong>Animal Presentation</strong> — kids choose an animal, research it with the naturalist, then present to the group.</li>
+      <li><strong>Wood/Sandstone Carving Workshop</strong> — for young rangers aged 13–17.</li>
+      <li><strong>Crazy Animals</strong> — a drawing game combining body parts from different animals into one "crazy animal."</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 8 — SAMBURU SPECIAL FIVE (informational, not interactive) -->
+<section id="special-five" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Northern Specials</span>
+      <h2>The Samburu Special Five</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">Samburu National Reserve is renowned for five species endemic to Northern Kenya, rarely seen further south.</p>
+
+    <div class="species-grid reveal d2">
+      <div class="species-card">
+        <span class="species-name">Grevy's Zebra</span>
+        <span class="species-latin">Equus grevyi</span>
+        <p>The largest and most endangered zebra species — known for its narrower stripes, white underbelly, larger ears and more donkey-like build than other zebras.</p>
+      </div>
+      <div class="species-card">
+        <span class="species-name">Reticulated Giraffe</span>
+        <span class="species-latin">Giraffa camelopardalis reticulata</span>
+        <p>Distinguished by a striking coat of large, polygonal patches resembling a net — a pattern that helps it blend into the surrounding acacia trees.</p>
+      </div>
+      <div class="species-card">
+        <span class="species-name">Beisa Oryx</span>
+        <span class="species-latin">Oryx beisa</span>
+        <p>A large antelope with long, straight, backward-curving horns, exceptionally well adapted to arid and semi-arid conditions — able to survive without water for long periods.</p>
+      </div>
+      <div class="species-card">
+        <span class="species-name">Gerenuk</span>
+        <span class="species-latin">Litocranius walleri</span>
+        <p>Its name means "giraffe-necked" in Somali. The long neck and legs let it reach acacia leaves and branches other antelope can't access.</p>
+      </div>
+      <div class="species-card">
+        <span class="species-name">Somali Ostrich</span>
+        <span class="species-latin">Struthio molybdophanes</span>
+        <p>Native to the Horn of Africa, identifiable by its distinctive blue-grey neck and legs — well adapted to this arid landscape.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 9 — SERVICES & PAYMENT -->
+<section id="services" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Services</span>
+      <h2>Payment, Currency &amp; Laundry</h2>
+      <span class="rule"></span>
+    </div>
+
+    <div class="info-block reveal d1">
+      <span class="label" style="margin-bottom:10px">Payment for Extras</span>
+      <p style="font-size:14px">We encourage cashless payment — Visa and Mastercard, mobile money, or online platforms such as Pesapal and DPO. Credit card payments attract a 5% surcharge.</p>
+    </div>
+
+    <div class="reveal d2" style="margin-top:24px">
+      <span class="label" style="margin-bottom:10px">Currency Converter — Live Rates</span>
+      <div class="converter-row">
+        <input class="converter-amount" type="number" id="conv-amount" value="100" min="0" inputmode="decimal" aria-label="Amount">
+        <select class="converter-from" id="conv-from" aria-label="From currency">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="KES">KES</option>
+        </select>
+      </div>
+      <div class="converter-results" id="conv-results">
+        <div class="converter-cell" data-currency="USD"><span class="k">USD</span><span class="v">—</span></div>
+        <div class="converter-cell" data-currency="EUR"><span class="k">EUR</span><span class="v">—</span></div>
+        <div class="converter-cell" data-currency="GBP"><span class="k">GBP</span><span class="v">—</span></div>
+        <div class="converter-cell" data-currency="KES"><span class="k">KES</span><span class="v">—</span></div>
+      </div>
+      <p class="currency-note">Indicative reference rate only — ask reception for the lodge's applied rate at time of payment.</p>
+    </div>
+
+    <ul class="bullet-list reveal d3" style="margin-top:24px">
+      <li><strong>Laundry</strong> — available per the laundry list in your room. Weather permitting, items are washed and returned within 24 hours; place items in the basket and complete the list.</li>
+      <li><strong>Tipping</strong> — not mandatory. Tip individual staff directly, or place a tip in the reception tip box, shared equally by the team (excluding your driver/guide).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 10 — SUSTAINABILITY -->
+<section id="sustainability" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Sustainability</span>
+      <h2>Community &amp; Wildlife Conservation</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">Soroi Samburu Lodge is an eco-friendly lodge built with local materials, running on solar power with a backup generator, and does not allow single-use plastics. Community bed-night fees are paid monthly to the local community.</p>
+    <p class="reveal d1">Through our partnership with Community &amp; Wildlife Conservation (CWC) — a grassroots initiative founded in 2020 — your stay directly supports education, healthcare, hygiene support, women's and youth empowerment, and anti-poaching efforts across the communities surrounding Soroi properties.</p>
+
+    <div class="cwc-block reveal d2">
+      <strong>Give back directly:</strong><br>
+      M-Pesa Paybill 542 542 · Account 01903829176350<br>
+      Bank transfer — I&amp;M Bank Limited, 14 Riverside Branch · Bank code 57 · Branch code 19 · SWIFT IMBLKENA<br>
+      Account name: Community and Wildlife Conservation<br>
+      community-wildlife.org · +254 799 417 689 · impact@community-wildlife.org
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 11 — SAFETY -->
+<section id="safety" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Safety</span>
+      <h2>Your Wellbeing</h2>
+      <span class="rule"></span>
+    </div>
+
+    <div class="info-block reveal d1">
+      <span class="label" style="margin-bottom:10px">In Case of Fire</span>
+      <ul class="bullet-list" style="margin-top:0">
+        <li>Exit the room immediately and move to a clear area — do not stop for belongings.</li>
+        <li>Report any fire to a staff member immediately.</li>
+        <li>Proceed to the assembly point at the Lodge entrance for a head count.</li>
+        <li>Do not re-enter until management has declared it safe.</li>
+      </ul>
+    </div>
+
+    <div class="info-block reveal d2">
+      <span class="label" style="margin-bottom:10px">Night Safety</span>
+      <p style="font-size:14px">Soroi Samburu Lodge is unfenced — wild animals surround you. Guards protect the lodge 24/7, and an askari will accompany you around the lodge at night. <strong style="color:var(--earth)">Please do not walk alone at night</strong> — call reception for an escort.</p>
+    </div>
+
+    <div class="info-block reveal d3">
+      <span class="label" style="margin-bottom:10px">Emergencies &amp; Medical</span>
+      <p style="font-size:14px">For anything unexpected, contact Reception, Security, or the Lodge Manager via the intercom. The lodge has a resident nurse and can arrange transport to the nearest medical facility if needed.</p>
+      <div class="info-row" style="margin-top:10px"><span class="k">General Manager (Wycliffe)</span><span class="v">+254 758 585 932</span></div>
+      <div class="info-row"><span class="k">Assistant Manager (Bernard)</span><span class="v">+254 758 584 138</span></div>
+    </div>
+
+    <p class="reveal d4" style="margin-top:20px;font-size:13px;color:var(--ink-lt)">Smoking is prohibited in public areas per Kenyan law; designated smoking zones are available outside your room.</p>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 12 — FIND YOUR WAY (interactive property map) -->
+<section id="find-your-way" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Find Your Way</span>
+      <h2>Around the Lodge</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">A schematic guide to the lodge layout, based on the official Soroi Samburu Lodge site plan. Tap or hover a zone for a quick description.</p>
+
+    <div class="zone-map reveal d2">
+      <svg viewBox="0 0 400 260" role="img" aria-label="Schematic map of Soroi Samburu Lodge">
+        <path class="zone-river" d="M0 235 C 80 250, 160 220, 240 240 S 340 255, 400 235"/>
+
+        <rect class="zone" data-zone="staff" x="20" y="15" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="105" y="36">Staff Quarters &amp; Parking</text>
+
+        <rect class="zone" data-zone="gates" x="210" y="15" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="295" y="36">Entry &amp; Exit Gates</text>
+
+        <rect class="zone" data-zone="arrival" x="20" y="60" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="105" y="81">Arrival Area</text>
+
+        <rect class="zone" data-zone="lodge" x="210" y="60" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="295" y="81">Main Lodge &amp; River Deck</text>
+
+        <rect class="zone" data-zone="pool" x="20" y="105" width="110" height="34" rx="2"></rect>
+        <text class="zone-label" x="75" y="126">Pool Area</text>
+
+        <rect class="zone" data-zone="sundowner" x="145" y="105" width="110" height="34" rx="2"></rect>
+        <text class="zone-label" x="200" y="126">Sundowner Deck</text>
+
+        <rect class="zone" data-zone="spa" x="270" y="105" width="110" height="34" rx="2"></rect>
+        <text class="zone-label" x="325" y="126">Spa</text>
+
+        <rect class="zone" data-zone="executive" x="20" y="150" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="105" y="171">Executive Suite</text>
+
+        <rect class="zone" data-zone="rooms" x="210" y="150" width="170" height="34" rx="2"></rect>
+        <text class="zone-label" x="295" y="171">Guest Rooms &amp; Tents</text>
+      </svg>
+      <div class="zone-detail" id="zone-detail">
+        <span class="zd-title">Tap a zone above</span>
+        Arrival, the Main Lodge, pool, spa, sundowner deck, guest rooms and staff areas — a quick overview of where everything sits along the Ewaso Nyiro.
+      </div>
+      <p class="zone-map-note">Positions are simplified for a mobile map, not to exact scale. Executive Suite location is <span class="tbc">[Unverified]</span> — pending confirmation from Yasin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 13 — REFERENCE -->
+<section id="reference" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Reference</span>
+      <h2>Quick A–Z Index</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="az-index reveal d1">
+      <a href="#your-stay">Check-in / Check-out</a>
+      <a href="#your-stay">Children</a>
+      <a href="#dining">Dining &amp; Meal Times</a>
+      <a href="#your-stay">Drinking Water</a>
+      <a href="#your-stay">Electricity</a>
+      <a href="#safety">Emergencies</a>
+      <a href="#safety">Fire Procedure</a>
+      <a href="#activities">Game Drives &amp; Activities</a>
+      <a href="#kids-club">Kids Club</a>
+      <a href="#services">Laundry</a>
+      <a href="#your-stay">Mini-Bar</a>
+      <a href="#special-five">Northern Specials</a>
+      <a href="#services">Payment &amp; Currency</a>
+      <a href="#pool-spa">Pool &amp; Spa</a>
+      <a href="#safety">Safety at Night</a>
+      <a href="#pool-spa">Sundowner Deck</a>
+      <a href="#sustainability">Sustainability &amp; CWC</a>
+      <a href="#services">Tipping</a>
+      <a href="#your-stay">Valuables &amp; Safe</a>
+      <a href="#welcome">Wi-Fi</a>
+    </div>
+
+    <div class="reveal d2" style="margin-top:32px">
+      <span class="label" style="margin-bottom:10px">Enjoyed Your Stay?</span>
+      <div class="contact-cta">
+        <a class="cta-btn" href="https://www.tripadvisor.com/UserReviewEdit-d33325014?m=66883" target="_blank" rel="noopener">
+          <img class="cta-qr" src="assets/samburu-lodge_tripadvisor_qr.svg" alt="Scan to review Soroi Samburu Lodge on TripAdvisor" onerror="this.style.display='none'">
+          <span class="cta-label">Review on TripAdvisor</span>
+          <span class="cta-sub">Scan or tap</span>
+        </a>
+        <a class="cta-btn" href="https://search.google.com/local/writereview?placeid=ChIJX32AdwCPiBcRueP53l5VM0s" target="_blank" rel="noopener">
+          <img class="cta-qr" src="assets/samburu-lodge_google_qr.svg" alt="Scan to review Soroi Samburu Lodge on Google" onerror="this.style.display='none'">
+          <span class="cta-label">Review on Google</span>
+          <span class="cta-sub">Scan or tap</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ SECTION 14 — SOROI COLLECTION -->
+<section class="page-section" id="soroi-collection">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Soroi Collection</span>
+      <h2>The Soroi Collection</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="reveal d1">
+      <p>Soroi Samburu Lodge is one of eleven properties across Kenya, each with its own character and its own landscape. From the Maasai Mara to the coral coast, the collection is bound by a common standard — genuine, unhurried, and rooted in place.</p>
+    </div>
+
+    <div class="discover-destinations reveal d1">
+      <span class="dest-tag">Maasai Mara</span>
+      <span class="dest-sep">&nbsp;·&nbsp;</span>
+      <span class="dest-tag">Samburu</span>
+      <span class="dest-sep">&nbsp;·&nbsp;</span>
+      <span class="dest-tag">Amboseli</span>
+      <span class="dest-sep">&nbsp;·&nbsp;</span>
+      <span class="dest-tag">Tsavo</span>
+      <span class="dest-sep">&nbsp;·&nbsp;</span>
+      <span class="dest-tag">Diani</span>
+      <span class="dest-sep">&nbsp;·&nbsp;</span>
+      <span class="dest-tag">Nairobi</span>
+    </div>
+
+    <div class="discover-grid reveal d2">
+      <a href="https://soroi.com/accommodation/maasai-mara/soroi-mara-bush-camp/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Mara Bush Camp ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-mara-bush-camp-2.webp" alt="Soroi Mara Bush Camp" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Maasai Mara</span>
+            <span class="prop-ed-name">Soroi Mara Bush Camp</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/maasai-mara/soroi-private-wing/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Private Wing ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-mara-bush-camp.jpg" alt="Soroi Private Wing" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Maasai Mara</span>
+            <span class="prop-ed-name">Soroi Private Wing</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/maasai-mara/soroi-luxury-migration-camp/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Luxury Migration Camp ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-migration.jpg" alt="Soroi Luxury Migration Camp" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Maasai Mara</span>
+            <span class="prop-ed-name">Soroi Luxury Migration Camp</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/samburu/soroi-larsens-camp/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Larsens Camp ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-larsens.jpg" alt="Soroi Larsens Camp" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Samburu</span>
+            <span class="prop-ed-name">Soroi Larsens Camp</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/amboseli-camp-portfolio/soroi-amboseli/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Amboseli ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-amboseli.jpg" alt="Soroi Amboseli" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Amboseli</span>
+            <span class="prop-ed-name">Soroi Amboseli</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/tsavo/soroi-lions-bluff-lodge/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Lions Bluff Lodge ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-lions-bluff.jpg" alt="Soroi Lions Bluff Lodge" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Tsavo / Lumo</span>
+            <span class="prop-ed-name">Soroi Lions Bluff Lodge</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/tsavo/soroi-leopards-lair/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Leopards Lair ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-leopards-lair.jpg" alt="Soroi Leopards Lair" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Tsavo / Lumo</span>
+            <span class="prop-ed-name">Soroi Leopards Lair</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/tsavo/soroi-cheetah-tented-camp/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Cheetah Tented Camp ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-cheetah.jpg" alt="Soroi Cheetah Tented Camp" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Tsavo / Lumo</span>
+            <span class="prop-ed-name">Soroi Cheetah Tented Camp</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/accommodation/soroi-blue-diani/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Blue Diani ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-diani.jpg" alt="Soroi Blue Diani" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">South Coast</span>
+            <span class="prop-ed-name">Soroi Blue Diani</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://soroi.com/" target="_blank" rel="noopener" class="prop-editorial">
+        <div class="photo-ph prop-ph"><span class="ph-label">[ Soroi Nairobi ]</span></div>
+        <img class="prop-editorial-img" src="images/discover-nairobi.jpg" alt="Soroi Nairobi" onerror="this.style.display='none'">
+        <div class="prop-editorial-overlay"></div>
+        <div class="prop-editorial-content">
+          <div class="prop-ed-header">
+            <span class="prop-ed-region">Nairobi</span>
+            <span class="prop-ed-name">Soroi Nairobi</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="discover-contact-strip reveal d3">
+      <div class="discover-contact-left">
+        <h3>Get in Touch</h3>
+        <div class="contact-row">
+          <div class="contact-pair"><span class="cl-label">Web</span><a href="https://soroi.com" target="_blank" rel="noopener" class="cl-val">soroi.com</a></div>
+          <div class="contact-pair"><span class="cl-label">Email</span><a href="mailto:reservations@soroi.com" class="cl-val">reservations@soroi.com</a></div>
+          <div class="contact-pair"><span class="cl-label">Tel</span><a href="tel:+254732557714" class="cl-val">+254 732 557 714</a></div>
+        </div>
+      </div>
+      <div class="discover-social">
+        <p>Share your stay with us</p>
+        <a href="https://www.instagram.com/soroicollection" target="_blank" rel="noopener"><span class="discover-social-handle">@soroicollection</span></a>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/soroicollection" target="_blank" rel="noopener" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/SoroiCollection" target="_blank" rel="noopener" title="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@SoroiCollection" target="_blank" rel="noopener" title="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10 9 16 12 10 15 10 9" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="closing-line reveal d4">Karibu — we're honoured to host you on the banks of the Ewaso Nyiro.</p>
+  </div>
+</section>
+
+<script>
+// Progress bar
+var bar=document.getElementById('progress-bar');
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  bar.style.width=pct+'%';
+});
+
+// Frosted nav on scroll
+var nav=document.getElementById('site-nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>40){nav.classList.add('frosted');}else{nav.classList.remove('frosted');}
+});
+
+// Hamburger / nav overlay
+var hamburger=document.getElementById('hamburger');
+var overlay=document.getElementById('nav-overlay');
+var navClose=document.getElementById('nav-close');
+function toggleNav(){hamburger.classList.toggle('open');overlay.classList.toggle('open');}
+hamburger.addEventListener('click',toggleNav);
+navClose.addEventListener('click',toggleNav);
+overlay.querySelectorAll('a').forEach(function(a){a.addEventListener('click',toggleNav);});
+
+// Weather card (Open-Meteo, no API key)
+// [Unverified] Coordinates approximate Samburu National Reserve — exact lodge GPS not yet confirmed by Yasin.
+(function(){
+  var WMO={
+    0:{d:'Clear skies',i:'wi-clear'},1:{d:'Mainly clear',i:'wi-partly'},2:{d:'Partly cloudy',i:'wi-partly'},3:{d:'Overcast',i:'wi-cloudy'},
+    45:{d:'Foggy',i:'wi-cloudy'},48:{d:'Foggy',i:'wi-cloudy'},
+    51:{d:'Light drizzle',i:'wi-rain'},53:{d:'Drizzle',i:'wi-rain'},55:{d:'Heavy drizzle',i:'wi-rain'},
+    56:{d:'Freezing drizzle',i:'wi-rain'},57:{d:'Freezing drizzle',i:'wi-rain'},
+    61:{d:'Light rain',i:'wi-rain'},63:{d:'Rain',i:'wi-rain'},65:{d:'Heavy rain',i:'wi-rain'},
+    66:{d:'Freezing rain',i:'wi-rain'},67:{d:'Freezing rain',i:'wi-rain'},
+    71:{d:'Light snow',i:'wi-rain'},73:{d:'Snow',i:'wi-rain'},75:{d:'Heavy snow',i:'wi-rain'},77:{d:'Snow grains',i:'wi-rain'},
+    80:{d:'Rain showers',i:'wi-rain'},81:{d:'Rain showers',i:'wi-rain'},82:{d:'Heavy rain showers',i:'wi-rain'},
+    85:{d:'Snow showers',i:'wi-rain'},86:{d:'Snow showers',i:'wi-rain'},
+    95:{d:'Thunderstorm',i:'wi-storm'},96:{d:'Thunderstorm, hail',i:'wi-storm'},99:{d:'Thunderstorm, hail',i:'wi-storm'}
+  };
+  function hhmm(iso){return iso?iso.slice(11,16):'--:--';}
+  var card=document.getElementById('weather-card');
+  var iconWrap=document.getElementById('weather-icon');
+  var elTemp=document.getElementById('weather-temp');
+  var elDesc=document.getElementById('weather-desc');
+  var elDetail=document.getElementById('weather-detail');
+  var elSun=document.getElementById('weather-sun');
+  var elTip=document.getElementById('weather-tip');
+  var url='https://api.open-meteo.com/v1/forecast?latitude=-0.5975&longitude=37.5388'
+    +'&current=temperature_2m,apparent_temperature,weather_code'
+    +'&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset'
+    +'&timezone=Africa%2FNairobi';
+  fetch(url).then(function(r){if(!r.ok)throw new Error('weather fetch failed');return r.json();}).then(function(data){
+    var cur=data.current,daily=data.daily;
+    var meta=WMO[cur.weather_code]||{d:'—',i:'wi-clear'};
+    var icon=iconWrap.querySelector('.'+meta.i);
+    if(icon)icon.classList.add('active');
+    elTemp.textContent=Math.round(cur.temperature_2m)+'°';
+    elDesc.textContent=meta.d;
+    var lo=Math.round(daily.temperature_2m_min[0]),hi=Math.round(daily.temperature_2m_max[0]);
+    elDetail.textContent='Feels like '+Math.round(cur.apparent_temperature)+'° · H '+hi+'° / L '+lo+'°';
+    elSun.innerHTML='Sunrise <span>'+hhmm(daily.sunrise[0])+'</span> &middot; Sunset <span>'+hhmm(daily.sunset[0])+'</span>';
+    elTip.textContent = lo<16
+      ? 'Cool desert nights ahead — bring a warm layer for the early game drive and the fireplace.'
+      : 'Warm days, cooler evenings — a light layer for sundowners is still worth packing.';
+  }).catch(function(){
+    card.classList.add('is-error');
+    var icon=iconWrap.querySelector('.wi-cloudy');
+    if(icon)icon.classList.add('active');
+    elTemp.textContent='--°';
+    elDesc.textContent='[Conditions unavailable — check with reception]';
+    elDetail.textContent='';
+    elSun.innerHTML='';
+    elTip.textContent='';
+  });
+})();
+
+// Moon phase (calculated client-side, no API)
+(function(){
+  var SYNODIC=29.530588853;
+  var KNOWN_NEW_MOON=Date.UTC(2000,0,6,18,14,0); // 2000-01-06 18:14 UTC
+  var daysSince=(Date.now()-KNOWN_NEW_MOON)/86400000;
+  var phase=(daysSince%SYNODIC)/SYNODIC;
+  if(phase<0)phase+=1;
+  var illum=Math.round((1-Math.cos(2*Math.PI*phase))/2*100);
+  var names=['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Last Quarter','Waning Crescent'];
+  var classes=['moon-new','moon-waxing-crescent','moon-first-quarter','moon-waxing-gibbous','moon-full','moon-waning-gibbous','moon-last-quarter','moon-waning-crescent'];
+  var idx=Math.floor(phase*8+0.5)%8;
+  var iconWrap=document.getElementById('moon-icon');
+  var icon=iconWrap.querySelector('.'+classes[idx]);
+  if(icon)icon.classList.add('active');
+  document.getElementById('moon-phase-name').textContent=names[idx];
+  document.getElementById('moon-illum').textContent=illum+'% illuminated';
+})();
+
+// Currency converter (open.er-api.com, indicative — one fetch, live client-side conversion)
+(function(){
+  var amountEl=document.getElementById('conv-amount');
+  var fromEl=document.getElementById('conv-from');
+  var resultsEl=document.getElementById('conv-results');
+  if(!amountEl||!fromEl||!resultsEl)return;
+  var CURRENCIES=['USD','EUR','GBP','KES'];
+  var rates=null; // { USD:1, EUR:.., GBP:.., KES:.. } — all relative to USD
+
+  function render(){
+    var cells=resultsEl.querySelectorAll('.converter-cell');
+    var from=fromEl.value;
+    var amount=parseFloat(amountEl.value);
+    cells.forEach(function(cell){
+      var cur=cell.getAttribute('data-currency');
+      var v=cell.querySelector('.v');
+      cell.classList.toggle('is-from',cur===from);
+      if(!rates){v.textContent='[Unavailable]';return;}
+      if(isNaN(amount)){v.textContent='—';return;}
+      var usdAmount = from==='USD' ? amount : amount/rates[from];
+      var converted = cur==='USD' ? usdAmount : usdAmount*rates[cur];
+      v.textContent = converted.toLocaleString(undefined,{maximumFractionDigits:2,minimumFractionDigits:2});
+    });
+  }
+
+  amountEl.addEventListener('input',render);
+  fromEl.addEventListener('change',render);
+
+  fetch('https://open.er-api.com/v6/latest/USD').then(function(r){if(!r.ok)throw new Error('rate fetch failed');return r.json();}).then(function(data){
+    rates={USD:1,EUR:data.rates.EUR,GBP:data.rates.GBP,KES:data.rates.KES};
+    render();
+  }).catch(function(){
+    rates=null;
+    amountEl.disabled=true;
+    fromEl.disabled=true;
+    render();
+  });
+})();
+
+// Wi-Fi password copy button
+document.querySelectorAll('.copy-btn[data-copy]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var val=btn.getAttribute('data-copy');
+    navigator.clipboard.writeText(val).then(function(){
+      btn.textContent='Copied';
+      btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1800);
+    });
+  });
+});
+
+// Property wayfinding map — tap/hover zone detail
+(function(){
+  var zoneInfo={
+    staff:'Staff Quarters &amp; Parking — staff accommodation and the staff access parking lot. Private, not a guest area.',
+    gates:'The lodge&rsquo;s main entry and exit gates.',
+    arrival:'Arrival Area — where you&rsquo;re welcomed on arrival, next to the Main Lodge.',
+    lodge:'Main Lodge &amp; River Deck — reception, dining and the main bar, with a deck overlooking the Ewaso Nyiro.',
+    pool:'Swimming Pool Area — the rim-flow pool, open 8:00 am &ndash; 6:00 pm.',
+    sundowner:'Sundowner Deck — sunset drinks overlooking the river.',
+    spa:'The Spa — recently remodelled. Book your session through reception.',
+    executive:'Executive Suite — location shown here is <span class="tbc">[Unverified]</span>, pending confirmation from Yasin.',
+    rooms:'Guest Rooms &amp; Tents — Standard, Superior and Family rooms plus Tour Leader Tents, arranged along the riverbank in several clusters.'
+  };
+  var detail=document.getElementById('zone-detail');
+  document.querySelectorAll('.zone').forEach(function(z){
+    function activate(){
+      document.querySelectorAll('.zone').forEach(function(o){o.classList.remove('active');});
+      z.classList.add('active');
+      var key=z.getAttribute('data-zone');
+      detail.innerHTML='<span class="zd-title">'+z.nextElementSibling.textContent+'</span>'+(zoneInfo[key]||'');
+    }
+    z.addEventListener('click',activate);
+    z.addEventListener('mouseenter',activate);
+  });
+})();
+
+// Scroll reveal
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -20px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+}
+</script>
+
+</body>
+</html>
