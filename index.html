@@ -296,12 +296,10 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
 .hero-wrap .photo-ph{position:absolute;inset:0;min-height:100%;border:none;border-radius:0}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-overlay{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 52px;background:linear-gradient(to top,rgba(20,14,10,.88) 0%,rgba(20,14,10,.35) 65%,transparent 100%)}
-.hero-title-row{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,28px)}
-.hero-wordmark{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(32px,8vw,48px);line-height:1.15;letter-spacing:.2em;color:#fff;text-align:center}
 .hero-rule{width:60px;height:1px;background:var(--bronze);margin:16px auto;display:block}
 .hero-sub{font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:center;display:block}
-.hero-logo-wrap{flex-shrink:0}
-.hero-logo-wrap img{height:64px;width:auto;opacity:.95;display:block}
+.hero-logo-wrap{display:flex;justify-content:center}
+.hero-logo-wrap img{height:clamp(96px,22vw,150px);width:auto;opacity:.95;display:block;margin:0 auto}
 .hero-logo-tbc{display:block;text-align:center;font-size:11px;font-style:italic;margin-top:14px}
 
 .welcome-body{padding-top:60px;padding-bottom:60px}
@@ -349,11 +347,8 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <source src="assets/hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay">
-      <div class="hero-title-row">
-        <span class="hero-wordmark">SOROI SAMBURU LODGE</span>
-        <div class="hero-logo-wrap">
-          <img src="images/ssl-logo-white.png" alt="Soroi Samburu Lodge logo" onerror="this.style.display='none'">
-        </div>
+      <div class="hero-logo-wrap">
+        <img src="images/ssl-logo-white.png" alt="Soroi Samburu Lodge" onerror="this.style.display='none'">
       </div>
       <span class="hero-rule"></span>
       <span class="hero-sub">Samburu National Reserve, Kenya</span>
@@ -1326,21 +1321,6 @@ document.querySelectorAll('.copy-btn[data-copy]').forEach(function(btn){
     var open=panel.classList.toggle('open');
     toggle.setAttribute('aria-expanded',open?'true':'false');
   });
-})();
-
-// Hero logo — match height to the wordmark text block (varies with line-wrap)
-(function(){
-  var wordmark=document.querySelector('.hero-wordmark');
-  var logo=document.querySelector('.hero-logo-wrap img');
-  if(!wordmark||!logo)return;
-  function sizeLogo(){
-    var h=wordmark.getBoundingClientRect().height;
-    if(h>0)logo.style.height=h+'px';
-  }
-  if(logo.complete){sizeLogo();}else{logo.addEventListener('load',sizeLogo);}
-  window.addEventListener('resize',sizeLogo);
-  window.addEventListener('orientationchange',sizeLogo);
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sizeLogo);
 })();
 
 // Scroll reveal
