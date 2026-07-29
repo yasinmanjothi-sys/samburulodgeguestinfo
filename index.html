@@ -101,6 +101,24 @@ section.page-section:nth-of-type(even) .info-block{background:var(--parchment)}
 .copy-btn{font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);background:none;border:1px solid var(--bronze);padding:3px 8px;cursor:pointer;transition:background .2s ease,color .2s ease;flex-shrink:0}
 .copy-btn:hover,.copy-btn.copied{background:var(--bronze);color:#fff}
 
+/* Wi-Fi block — large, easy to use */
+.wifi-block{margin-top:28px;padding:32px 24px;background:var(--parchment-mid);border:1px solid var(--parchment-line);text-align:center}
+section.page-section:nth-of-type(even) .wifi-block{background:var(--parchment)}
+.wifi-icon{width:56px;height:56px;margin:0 auto 14px;display:block}
+.wifi-icon .wi-stroke{fill:none;stroke:var(--bronze);stroke-width:2;stroke-linecap:round}
+.wifi-icon .wi-dot{fill:var(--bronze)}
+.wifi-fields{display:flex;flex-direction:column;gap:16px;max-width:280px;margin:0 auto}
+.wifi-field .k{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:4px}
+.wifi-field .v{font-family:'Cinzel',serif;font-size:22px;color:var(--earth);letter-spacing:.03em;word-break:break-all}
+.wifi-copy-btn{margin-top:22px;width:100%;max-width:280px;display:block;margin-left:auto;margin-right:auto;font-family:'Cinzel',serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--bronze);border:1px solid var(--bronze);padding:15px 20px;cursor:pointer;transition:opacity .2s ease}
+.wifi-copy-btn:hover{opacity:.88}
+.wifi-copy-btn.copied{background:var(--earth);border-color:var(--earth)}
+.wifi-qr-toggle{margin-top:18px;background:none;border:none;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--ink-lt);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px}
+.wifi-qr-panel{display:none;margin-top:16px;padding-top:20px;border-top:1px solid var(--parchment-line)}
+.wifi-qr-panel.open{display:block}
+.wifi-qr-panel img{width:150px;height:150px;margin:0 auto;border:1px solid var(--parchment-line);background:#fff;padding:8px}
+.wifi-qr-panel p{font-size:11.5px;color:var(--ink-lt);max-width:260px;margin:12px auto 0;line-height:1.6}
+
 /* Quick-facts grid (structured / corporate-lean layout) */
 .quick-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:24px}
 .qf-cell{background:var(--parchment);padding:16px 18px}
@@ -212,18 +230,11 @@ section.page-section:nth-of-type(even) .species-card{background:var(--parchment-
 .species-latin{font-size:11px;font-style:italic;color:var(--ink-lt);margin-top:2px}
 .species-card p{font-size:13px;margin-top:8px}
 
-/* Wayfinding / property map (schematic diagram, not a photo) */
-.zone-map{margin-top:24px;border:1px solid var(--parchment-line);background:var(--parchment)}
-section.page-section:nth-of-type(even) .zone-map{background:var(--parchment-mid)}
-.zone-map svg{width:100%;height:auto;display:block}
-.zone-map-note{font-size:12px;color:var(--ink-lt);padding:14px 18px;border-top:1px solid var(--parchment-line);font-style:italic}
-.zone{fill:var(--parchment-mid);stroke:var(--bronze);stroke-width:1;cursor:pointer;transition:fill .2s ease}
-section.page-section:nth-of-type(even) .zone{fill:var(--parchment)}
-.zone:hover,.zone.active{fill:var(--bronze)}
-.zone-label{font-family:'Poppins',sans-serif;font-size:9px;letter-spacing:.04em;fill:var(--earth);text-anchor:middle;pointer-events:none}
-.zone-river{fill:none;stroke:var(--sand);stroke-width:3;opacity:.55}
-.zone-detail{padding:16px 22px;border-top:1px solid var(--parchment-line);min-height:52px;font-size:13px;color:var(--ink-mid)}
-.zone-detail .zd-title{font-family:'Cinzel',serif;font-size:13px;color:var(--earth);display:block;margin-bottom:4px}
+/* Wayfinding / property map (illustrated, official) */
+.map-illustration{display:block;margin-top:24px;border:1px solid var(--parchment-line);cursor:pointer}
+.map-illustration img{width:100%;height:auto;display:block;transition:opacity .2s ease}
+.map-illustration:hover img{opacity:.92}
+.zone-map-note{font-size:12px;color:var(--ink-lt);font-style:italic;line-height:1.6}
 
 /* CWC / sustainability block */
 .cwc-block{margin-top:24px;padding:20px 22px;background:var(--parchment-mid);border:1px solid var(--parchment-line);font-size:12px;color:var(--ink-lt);line-height:1.8}
@@ -483,10 +494,24 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <p style="margin-top:14px;font-size:13px;">Samburu's low light pollution makes for exceptional stargazing from the sundowner deck or your veranda — ask your room steward about clear-sky nights.</p>
     </div>
 
-    <div class="info-block reveal d5">
-      <span class="label" style="margin-bottom:12px;">Wi-Fi</span>
-      <div class="info-row"><span class="k">Network</span><span class="v">ssl</span></div>
-      <div class="info-row"><span class="k">Password</span><span class="v-wrap"><span class="v">Ssl@2025</span><button class="copy-btn" data-copy="Ssl@2025">Copy</button></span></div>
+    <div class="wifi-block reveal d5">
+      <svg class="wifi-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="wi-stroke" d="M8 24c13-13 35-13 48 0"/>
+        <path class="wi-stroke" d="M17 33c9-9 21-9 30 0"/>
+        <path class="wi-stroke" d="M26 42c5-5 7-5 12 0"/>
+        <circle class="wi-dot" cx="32" cy="50" r="3.5"/>
+      </svg>
+      <span class="label" style="margin-bottom:16px;">Wi-Fi</span>
+      <div class="wifi-fields">
+        <div class="wifi-field"><span class="k">Network</span><span class="v">ssl</span></div>
+        <div class="wifi-field"><span class="k">Password</span><span class="v">Ssl@2025</span></div>
+      </div>
+      <button class="wifi-copy-btn copy-btn" data-copy="Ssl@2025">Copy Password</button>
+      <button class="wifi-qr-toggle" id="wifi-qr-toggle" aria-expanded="false">Connecting a laptop or another device? Scan to join &darr;</button>
+      <div class="wifi-qr-panel" id="wifi-qr-panel">
+        <img src="images/wifi-qr.png" alt="QR code to join the ssl Wi-Fi network" width="150" height="150" loading="lazy">
+        <p>Scan with another device's camera to join automatically — no typing needed. On the phone you're reading this on, use Copy Password above instead.</p>
+      </div>
     </div>
 
     <div class="reveal d5" style="margin-top:28px">
@@ -901,50 +926,17 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <h2>Around the Lodge</h2>
       <span class="rule"></span>
     </div>
-    <p class="reveal d1">A schematic guide to the lodge layout, based on the official Soroi Samburu Lodge site plan. Tap or hover a zone for a quick description.</p>
+    <p class="reveal d1">The official illustrated map of the property — tap to view full size.</p>
 
     <div class="photo-ph reveal d1">
       <span class="ph-label">[Photo — aerial view of the lodge]</span>
       <img class="ph-photo" src="images/aerial-property.jpg" alt="Aerial view of Soroi Samburu Lodge on the Ewaso Nyiro river" onerror="this.style.display='none'">
     </div>
 
-    <div class="zone-map reveal d2">
-      <svg viewBox="0 0 400 260" role="img" aria-label="Schematic map of Soroi Samburu Lodge">
-        <path class="zone-river" d="M0 235 C 80 250, 160 220, 240 240 S 340 255, 400 235"/>
-
-        <rect class="zone" data-zone="staff" x="20" y="15" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="105" y="36">Staff Quarters &amp; Parking</text>
-
-        <rect class="zone" data-zone="gates" x="210" y="15" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="295" y="36">Entry &amp; Exit Gates</text>
-
-        <rect class="zone" data-zone="arrival" x="20" y="60" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="105" y="81">Arrival Area</text>
-
-        <rect class="zone" data-zone="lodge" x="210" y="60" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="295" y="81">Main Lodge &amp; River Deck</text>
-
-        <rect class="zone" data-zone="pool" x="20" y="105" width="110" height="34" rx="2"></rect>
-        <text class="zone-label" x="75" y="126">Pool Area</text>
-
-        <rect class="zone" data-zone="sundowner" x="145" y="105" width="110" height="34" rx="2"></rect>
-        <text class="zone-label" x="200" y="126">Sundowner Deck</text>
-
-        <rect class="zone" data-zone="spa" x="270" y="105" width="110" height="34" rx="2"></rect>
-        <text class="zone-label" x="325" y="126">Spa</text>
-
-        <rect class="zone" data-zone="executive" x="20" y="150" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="105" y="171">Executive Suite</text>
-
-        <rect class="zone" data-zone="rooms" x="210" y="150" width="170" height="34" rx="2"></rect>
-        <text class="zone-label" x="295" y="171">Guest Rooms &amp; Tents</text>
-      </svg>
-      <div class="zone-detail" id="zone-detail">
-        <span class="zd-title">Tap a zone above</span>
-        Arrival, the Main Lodge, pool, spa, sundowner deck, guest rooms and staff areas — a quick overview of where everything sits along the Ewaso Nyiro.
-      </div>
-      <p class="zone-map-note">Positions are simplified for a mobile map, not to exact scale. Executive Suite location is <span class="tbc">[Unverified]</span> — pending confirmation from Yasin.</p>
-    </div>
+    <a href="images/property-map.jpg" target="_blank" rel="noopener" class="map-illustration reveal d2">
+      <img src="images/property-map.jpg" alt="Illustrated map of Soroi Samburu Lodge — Staff Quarters, Tour Leader Tents, numbered guest units, Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa, and Conference Centre along the Ewaso Ng'iro River">
+    </a>
+    <p class="zone-map-note" style="margin-top:10px">Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa and Conference Centre, with Staff Quarters and Tour Leader Tents (TL1&ndash;4) upriver and numbered guest units 1&ndash;13 along the riverbank.</p>
   </div>
 </section>
 
@@ -1302,39 +1294,25 @@ overlay.querySelectorAll('a').forEach(function(a){a.addEventListener('click',tog
 
 // Wi-Fi password copy button
 document.querySelectorAll('.copy-btn[data-copy]').forEach(function(btn){
+  var originalLabel=btn.textContent;
   btn.addEventListener('click',function(){
     var val=btn.getAttribute('data-copy');
     navigator.clipboard.writeText(val).then(function(){
       btn.textContent='Copied';
       btn.classList.add('copied');
-      setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1800);
+      setTimeout(function(){btn.textContent=originalLabel;btn.classList.remove('copied');},1800);
     });
   });
 });
 
-// Property wayfinding map — tap/hover zone detail
+// Wi-Fi QR panel toggle
 (function(){
-  var zoneInfo={
-    staff:'Staff Quarters &amp; Parking — staff accommodation and the staff access parking lot. Private, not a guest area.',
-    gates:'The lodge&rsquo;s main entry and exit gates.',
-    arrival:'Arrival Area — where you&rsquo;re welcomed on arrival, next to the Main Lodge.',
-    lodge:'Main Lodge &amp; River Deck — reception, dining and the main bar, with a deck overlooking the Ewaso Nyiro.',
-    pool:'Swimming Pool Area — the rim-flow pool, open 8:00 am &ndash; 6:00 pm.',
-    sundowner:'Sundowner Deck — sunset drinks overlooking the river.',
-    spa:'The Spa — recently remodelled. Book your session through reception.',
-    executive:'Executive Suite — location shown here is <span class="tbc">[Unverified]</span>, pending confirmation from Yasin.',
-    rooms:'Guest Rooms &amp; Tents — Standard, Superior and Family rooms plus Tour Leader Tents, arranged along the riverbank in several clusters.'
-  };
-  var detail=document.getElementById('zone-detail');
-  document.querySelectorAll('.zone').forEach(function(z){
-    function activate(){
-      document.querySelectorAll('.zone').forEach(function(o){o.classList.remove('active');});
-      z.classList.add('active');
-      var key=z.getAttribute('data-zone');
-      detail.innerHTML='<span class="zd-title">'+z.nextElementSibling.textContent+'</span>'+(zoneInfo[key]||'');
-    }
-    z.addEventListener('click',activate);
-    z.addEventListener('mouseenter',activate);
+  var toggle=document.getElementById('wifi-qr-toggle');
+  var panel=document.getElementById('wifi-qr-panel');
+  if(!toggle||!panel)return;
+  toggle.addEventListener('click',function(){
+    var open=panel.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',open?'true':'false');
   });
 })();
 
