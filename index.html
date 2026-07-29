@@ -231,7 +231,10 @@ section.page-section:nth-of-type(even) .species-card{background:var(--parchment-
 .species-card p{font-size:13px;margin-top:8px}
 
 /* Wayfinding / property map (illustrated, official) */
-.map-illustration{display:block;margin-top:24px;border:1px solid var(--parchment-line);cursor:pointer}
+.map-frame{margin-top:24px;padding:28px 24px 24px;background:var(--parchment);border:1px solid var(--parchment-line);box-shadow:0 4px 24px rgba(61,43,31,.08)}
+section.page-section:nth-of-type(even) .map-frame{background:var(--parchment-mid)}
+.map-frame .photo-ph{margin-bottom:20px}
+.map-illustration{display:block;margin-top:0;border:1px solid var(--parchment-line);cursor:pointer}
 .map-illustration img{width:100%;height:auto;display:block;transition:opacity .2s ease}
 .map-illustration:hover img{opacity:.92}
 @media(max-width:640px){
@@ -293,11 +296,12 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
 .hero-wrap .photo-ph{position:absolute;inset:0;min-height:100%;border:none;border-radius:0}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-overlay{position:absolute;left:0;right:0;bottom:0;padding:40px 24px 52px;background:linear-gradient(to top,rgba(20,14,10,.88) 0%,rgba(20,14,10,.35) 65%,transparent 100%)}
-.hero-wordmark{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(32px,8vw,48px);letter-spacing:.2em;color:#fff;text-align:center}
+.hero-title-row{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,28px)}
+.hero-wordmark{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(32px,8vw,48px);line-height:1.15;letter-spacing:.2em;color:#fff;text-align:center}
 .hero-rule{width:60px;height:1px;background:var(--bronze);margin:16px auto;display:block}
 .hero-sub{font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:center;display:block}
-.hero-logo-wrap{text-align:center;margin-bottom:18px}
-.hero-logo-wrap img{width:64px;margin:0 auto;opacity:.92}
+.hero-logo-wrap{flex-shrink:0}
+.hero-logo-wrap img{height:64px;width:auto;opacity:.95;display:block}
 .hero-logo-tbc{display:block;text-align:center;font-size:11px;font-style:italic;margin-top:14px}
 
 .welcome-body{padding-top:60px;padding-bottom:60px}
@@ -324,6 +328,7 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
   <button class="nav-overlay-close" id="nav-close">Close</button>
   <a href="#welcome">Welcome</a>
   <a href="#your-stay">Your Stay</a>
+  <a href="#find-your-way">Find Your Way</a>
   <a href="#dining">Dining</a>
   <a href="#pool-spa">Pool &amp; Spa</a>
   <a href="#game-drives">Game Drives</a>
@@ -333,7 +338,6 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
   <a href="#services">Services &amp; Payment</a>
   <a href="#sustainability">Sustainability</a>
   <a href="#safety">Safety</a>
-  <a href="#find-your-way">Find Your Way</a>
   <a href="#reference">Reference</a>
   <a href="#soroi-collection">Soroi Collection</a>
 </div>
@@ -345,13 +349,14 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <source src="assets/hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay">
-      <div class="hero-logo-wrap">
-        <img src="assets/soroicollectionblack.png" alt="Soroi Collection caracal logo" onerror="this.style.display='none'">
+      <div class="hero-title-row">
+        <span class="hero-wordmark">SOROI SAMBURU LODGE</span>
+        <div class="hero-logo-wrap">
+          <img src="images/ssl-logo-white.png" alt="Soroi Samburu Lodge logo" onerror="this.style.display='none'">
+        </div>
       </div>
-      <span class="hero-wordmark">SOROI SAMBURU LODGE</span>
       <span class="hero-rule"></span>
       <span class="hero-sub">Samburu National Reserve, Kenya</span>
-      <span class="hero-logo-tbc tbc">[TBC — Yasin to drop the Soroi caracal logo PNG into this guide's assets/ folder as soroicollectionblack.png]</span>
     </div>
   </div>
 
@@ -426,7 +431,7 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
           <div class="weather-tip" id="weather-tip"></div>
         </div>
       </div>
-      <p style="margin-top:14px;font-size:12px;font-style:italic;color:var(--ink-lt)">[Unverified] Forecast is centred on an approximate Samburu National Reserve coordinate — exact lodge GPS not yet confirmed by Yasin.</p>
+      <p style="margin-top:14px;font-size:12px;font-style:italic;color:var(--ink-lt)">Forecast centred on the lodge's confirmed GPS location.</p>
     </div>
 
     <div class="info-block reveal d4">
@@ -560,6 +565,30 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
     <div class="info-block reveal d2">
       <span class="label" style="margin-bottom:10px">Community &amp; Bed Night Fees</span>
       <p style="font-size:14px">Bed night fees are included in your stay and paid to the local community at the end of each month — one of the ways the lodge practises responsible tourism.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SECTION — FIND YOUR WAY -->
+<section id="find-your-way" class="page-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Find Your Way</span>
+      <h2>Around the Lodge</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="reveal d1">The official illustrated map of the property — swipe to explore, or tap to view full size.</p>
+
+    <div class="map-frame reveal d2">
+      <div class="photo-ph">
+        <span class="ph-label">[Photo — aerial view of the lodge]</span>
+        <img class="ph-photo" src="images/aerial-property.jpg" alt="Aerial view of Soroi Samburu Lodge on the Ewaso Nyiro river" onerror="this.style.display='none'">
+      </div>
+
+      <a href="images/property-map.jpg" target="_blank" rel="noopener" class="map-illustration">
+        <img src="images/property-map.jpg" alt="Illustrated map of Soroi Samburu Lodge — Staff Quarters, Tour Leader Tents, numbered guest units, Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa, and Conference Centre along the Ewaso Ng'iro River">
+      </a>
+      <p class="zone-map-note" style="margin-top:14px">Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa and Conference Centre, with Staff Quarters and Tour Leader Tents (TL1&ndash;4) upriver and numbered guest units 1&ndash;13 along the riverbank.</p>
     </div>
   </div>
 </section>
@@ -922,27 +951,6 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
   </div>
 </section>
 
-<!-- ============================================================ SECTION 12 — FIND YOUR WAY (interactive property map) -->
-<section id="find-your-way" class="page-section">
-  <div class="container">
-    <div class="reveal">
-      <span class="label">Find Your Way</span>
-      <h2>Around the Lodge</h2>
-      <span class="rule"></span>
-    </div>
-    <p class="reveal d1">The official illustrated map of the property — swipe to explore, or tap to view full size.</p>
-
-    <div class="photo-ph reveal d1">
-      <span class="ph-label">[Photo — aerial view of the lodge]</span>
-      <img class="ph-photo" src="images/aerial-property.jpg" alt="Aerial view of Soroi Samburu Lodge on the Ewaso Nyiro river" onerror="this.style.display='none'">
-    </div>
-
-    <a href="images/property-map.jpg" target="_blank" rel="noopener" class="map-illustration reveal d2">
-      <img src="images/property-map.jpg" alt="Illustrated map of Soroi Samburu Lodge — Staff Quarters, Tour Leader Tents, numbered guest units, Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa, and Conference Centre along the Ewaso Ng'iro River">
-    </a>
-    <p class="zone-map-note" style="margin-top:10px">Public Area, The Nest, Laundry, Pool &amp; Sundowner Deck, Spa and Conference Centre, with Staff Quarters and Tour Leader Tents (TL1&ndash;4) upriver and numbered guest units 1&ndash;13 along the riverbank.</p>
-  </div>
-</section>
 
 <!-- ============================================================ SECTION 13 — REFERENCE -->
 <section id="reference" class="page-section">
@@ -1188,7 +1196,7 @@ navClose.addEventListener('click',toggleNav);
 overlay.querySelectorAll('a').forEach(function(a){a.addEventListener('click',toggleNav);});
 
 // Weather card (Open-Meteo, no API key)
-// [Unverified] Coordinates approximate Samburu National Reserve — exact lodge GPS not yet confirmed by Yasin.
+// Coordinates: confirmed lodge GPS, decoded from Yasin's Plus Code (HGCP+XV, Samburu) — verified against Waso ward, Samburu East.
 (function(){
   var WMO={
     0:{d:'Clear skies',i:'wi-clear'},1:{d:'Mainly clear',i:'wi-partly'},2:{d:'Partly cloudy',i:'wi-partly'},3:{d:'Overcast',i:'wi-cloudy'},
@@ -1210,7 +1218,7 @@ overlay.querySelectorAll('a').forEach(function(a){a.addEventListener('click',tog
   var elDetail=document.getElementById('weather-detail');
   var elSun=document.getElementById('weather-sun');
   var elTip=document.getElementById('weather-tip');
-  var url='https://api.open-meteo.com/v1/forecast?latitude=-0.5975&longitude=37.5388'
+  var url='https://api.open-meteo.com/v1/forecast?latitude=0.5724&longitude=37.5372'
     +'&current=temperature_2m,apparent_temperature,weather_code'
     +'&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset'
     +'&timezone=Africa%2FNairobi';
@@ -1318,6 +1326,21 @@ document.querySelectorAll('.copy-btn[data-copy]').forEach(function(btn){
     var open=panel.classList.toggle('open');
     toggle.setAttribute('aria-expanded',open?'true':'false');
   });
+})();
+
+// Hero logo — match height to the wordmark text block (varies with line-wrap)
+(function(){
+  var wordmark=document.querySelector('.hero-wordmark');
+  var logo=document.querySelector('.hero-logo-wrap img');
+  if(!wordmark||!logo)return;
+  function sizeLogo(){
+    var h=wordmark.getBoundingClientRect().height;
+    if(h>0)logo.style.height=h+'px';
+  }
+  if(logo.complete){sizeLogo();}else{logo.addEventListener('load',sizeLogo);}
+  window.addEventListener('resize',sizeLogo);
+  window.addEventListener('orientationchange',sizeLogo);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(sizeLogo);
 })();
 
 // Scroll reveal
