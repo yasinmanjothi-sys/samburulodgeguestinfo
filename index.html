@@ -234,6 +234,9 @@ section.page-section:nth-of-type(even) .species-card{background:var(--parchment-
 .map-illustration{display:block;margin-top:24px;border:1px solid var(--parchment-line);cursor:pointer}
 .map-illustration img{width:100%;height:auto;display:block;transition:opacity .2s ease}
 .map-illustration:hover img{opacity:.92}
+@media(max-width:640px){
+  .map-illustration{position:relative;left:50%;right:50%;width:100vw;margin-left:-50vw;margin-right:-50vw;border-left:none;border-right:none}
+}
 .zone-map-note{font-size:12px;color:var(--ink-lt);font-style:italic;line-height:1.6}
 
 /* CWC / sustainability block */
