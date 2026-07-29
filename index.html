@@ -230,6 +230,23 @@ section.page-section:nth-of-type(even) .species-card{background:var(--parchment-
 .species-latin{font-size:11px;font-style:italic;color:var(--ink-lt);margin-top:2px}
 .species-card p{font-size:13px;margin-top:8px}
 
+/* Room facts — icon grid */
+.room-facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:24px}
+.rf-cell{background:var(--parchment);padding:18px 16px}
+section.page-section:nth-of-type(even) .rf-cell{background:var(--parchment-mid)}
+.rf-icon{width:26px;height:26px;display:block;margin-bottom:10px}
+.rf-icon .rf-stroke{fill:none;stroke:var(--bronze);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.rf-icon .rf-fill{fill:var(--bronze)}
+.rf-label{display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--earth);margin-bottom:6px}
+.rf-detail{font-size:12.5px;line-height:1.6;color:var(--ink-mid)}
+
+/* Kids Club — activity cards */
+.kids-grid{display:flex;flex-direction:column;gap:1px;background:var(--parchment-line);border:1px solid var(--parchment-line);margin-top:24px}
+.kid-card{background:var(--parchment);padding:16px 22px}
+section.page-section:nth-of-type(even) .kid-card{background:var(--parchment-mid)}
+.kid-name{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.02em;color:var(--earth);display:block;margin-bottom:5px}
+.kid-card p{font-size:13px;line-height:1.65;color:var(--ink-mid)}
+
 /* Wayfinding / property map (illustrated, official) */
 .map-frame{margin-top:24px;padding:28px 24px 24px;background:var(--parchment);border:1px solid var(--parchment-line);box-shadow:0 4px 24px rgba(61,43,31,.08)}
 section.page-section:nth-of-type(even) .map-frame{background:var(--parchment-mid)}
@@ -547,16 +564,48 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <span class="ph-label">[Photo — guest room interior]</span>
       <img class="ph-photo" src="images/room-hero.jpg" alt="Guest room at Soroi Samburu Lodge, canopy bed opening onto the private balcony" onerror="this.style.display='none'">
     </div>
-    <ul class="bullet-list reveal d1">
-      <li><strong>Children</strong> — welcome throughout, always accompanied by an adult.</li>
-      <li><strong>Electricity</strong> — the lodge runs on solar power with a backup generator. Flag any high-power appliances to the manager; switch off lights when not in use.</li>
-      <li><strong>Lighting</strong> — room lighting is solar-powered; please switch off when you leave your room.</li>
-      <li><strong>Mini-bar</strong> — provided in Superior and Executive Villa rooms. Ask reception if you'd like anything specific stocked.</li>
-      <li><strong>Showers</strong> — hot and cold available day and night. A stainless-steel bucket is provided to collect cold water while the hot water comes through; room stewards reuse this for cleaning and watering plants.</li>
-      <li><strong>Turn-down &amp; wake-up</strong> — turn-down service each evening, with hot water bottles on request. Your room steward will check nightly for your preferred wake-up time and morning drink.</li>
-      <li><strong>Valuables</strong> — a safe is provided in every room. Please leave the safe door open on checkout.</li>
-      <li><strong>Drinking water</strong> — filtered mineral water is available at the bar and via in-room dispensers; safe to drink and to brush your teeth with.</li>
-    </ul>
+    <div class="room-facts reveal d1">
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><circle class="rf-stroke" cx="16" cy="9" r="4"/><path class="rf-stroke" d="M16 13v9M16 15l-6 4M16 15l6 4M16 22l-5 6M16 22l5 6"/></svg>
+        <span class="rf-label">Children</span>
+        <p class="rf-detail">Welcome throughout, always accompanied by an adult.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><path class="rf-fill" d="M18 3 9 18h6l-2 11 10-15h-6l1-11z"/></svg>
+        <span class="rf-label">Electricity</span>
+        <p class="rf-detail">Solar power with backup generator. Flag high-power appliances to the manager; switch off lights when not in use.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><circle class="rf-stroke" cx="16" cy="13" r="8"/><path class="rf-stroke" d="M13 13q3-4 6 0M16 13v4M12 22h8M13 25h6M14 28h4"/></svg>
+        <span class="rf-label">Lighting</span>
+        <p class="rf-detail">Room lighting is solar-powered; please switch off when you leave your room.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><path class="rf-stroke" d="M11 5h10l-2 9q0 4-3 4t-3-4z"/><path class="rf-stroke" d="M16 18v8M11 26h10"/></svg>
+        <span class="rf-label">Mini-Bar</span>
+        <p class="rf-detail">Provided in Superior and Executive Villa rooms. Ask reception if you'd like anything specific stocked.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><path class="rf-stroke" d="M8 11h16M10 11q2-6 6-6t6 6"/><path class="rf-stroke" d="M12 15v3M16 16v4M20 15v3M13 22v2M19 22v2"/></svg>
+        <span class="rf-label">Showers</span>
+        <p class="rf-detail">Hot and cold day and night. A steel bucket collects cold run-off while hot water comes through — stewards reuse it for cleaning and plants.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><rect class="rf-stroke" x="6" y="12" width="4" height="10" rx="1"/><rect class="rf-stroke" x="6" y="18" width="20" height="4" rx="1"/><rect class="rf-stroke" x="8" y="14" width="6" height="4" rx="1"/><path class="rf-stroke" d="M8 22v3M24 22v3"/></svg>
+        <span class="rf-label">Turn-Down &amp; Wake-Up</span>
+        <p class="rf-detail">Evening turn-down with hot water bottles on request. Your steward checks nightly for your preferred wake-up time and morning drink.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><rect class="rf-stroke" x="7" y="6" width="18" height="20" rx="2"/><circle class="rf-stroke" cx="16" cy="16" r="4"/><path class="rf-stroke" d="M16 12v1M21 9v2"/></svg>
+        <span class="rf-label">Valuables</span>
+        <p class="rf-detail">A safe is provided in every room. Please leave the safe door open on checkout.</p>
+      </div>
+      <div class="rf-cell">
+        <svg class="rf-icon" viewBox="0 0 32 32" aria-hidden="true"><path class="rf-stroke" d="M16 5s8 10 8 16a8 8 0 0 1-16 0c0-6 8-16 8-16z"/></svg>
+        <span class="rf-label">Drinking Water</span>
+        <p class="rf-detail">Filtered mineral water at the bar and via in-room dispensers — safe to drink and to brush your teeth with.</p>
+      </div>
+    </div>
     <div class="info-block reveal d2">
       <span class="label" style="margin-bottom:10px">Community &amp; Bed Night Fees</span>
       <p style="font-size:14px">Bed night fees are included in your stay and paid to the local community at the end of each month — one of the ways the lodge practises responsible tourism.</p>
@@ -781,19 +830,52 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <span class="rule"></span>
     </div>
     <p class="reveal d1">At the Soroi Kids Club tent, children unleash their imagination and curiosity through activities suitable for all ages — from bush survival skills to storytelling and craft.</p>
-    <ul class="bullet-list reveal d2">
-      <li><strong>Samburu's Creation</strong> — a guided "smelly mocktail" party using scents found around camp.</li>
-      <li><strong>Samburu Snapshots</strong> — kids get a special camera to capture the small, easily-missed details of nature.</li>
-      <li><strong>Map Sticks</strong> — learn traditional Samburu wayfinding by building a landmark stick during a short walk.</li>
-      <li><strong>Bow &amp; Arrows</strong> — bush survival techniques, making and aiming bow and arrow at a target.</li>
-      <li><strong>Wildlife Reporter</strong> — kids act as "Animal Planet" reporters, writing about the lodge, its wildlife, or the Samburu people.</li>
-      <li><strong>Bird Spotting</strong> — learn how beak shape reflects diet, and why the Special Five are adapted to Samburu's arid habitat.</li>
-      <li><strong>Bush Walks</strong> — from reception to the water point, spotting birds, tracks and wilderness signs.</li>
-      <li><strong>Cultural Activities</strong> — an introduction to Samburu warrior culture and lifestyle; longer stays can include village visits.</li>
-      <li><strong>Animal Presentation</strong> — kids choose an animal, research it with the naturalist, then present to the group.</li>
-      <li><strong>Wood/Sandstone Carving Workshop</strong> — for young rangers aged 13–17.</li>
-      <li><strong>Crazy Animals</strong> — a drawing game combining body parts from different animals into one "crazy animal."</li>
-    </ul>
+    <div class="kids-grid reveal d2">
+      <div class="kid-card">
+        <span class="kid-name">Samburu's Creation</span>
+        <p>A guided "smelly mocktail" party using scents found around camp.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Samburu Snapshots</span>
+        <p>Kids get a special camera to capture the small, easily-missed details of nature.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Map Sticks</span>
+        <p>Learn traditional Samburu wayfinding by building a landmark stick during a short walk.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Bow &amp; Arrows</span>
+        <p>Bush survival techniques, making and aiming bow and arrow at a target.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Wildlife Reporter</span>
+        <p>Kids act as "Animal Planet" reporters, writing about the lodge, its wildlife, or the Samburu people.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Bird Spotting</span>
+        <p>Learn how beak shape reflects diet, and why the Special Five are adapted to Samburu's arid habitat.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Bush Walks</span>
+        <p>From reception to the water point, spotting birds, tracks and wilderness signs.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Cultural Activities</span>
+        <p>An introduction to Samburu warrior culture and lifestyle; longer stays can include village visits.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Animal Presentation</span>
+        <p>Kids choose an animal, research it with the naturalist, then present to the group.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Wood/Sandstone Carving Workshop</span>
+        <p>For young rangers aged 13–17.</p>
+      </div>
+      <div class="kid-card">
+        <span class="kid-name">Crazy Animals</span>
+        <p>A drawing game combining body parts from different animals into one "crazy animal."</p>
+      </div>
+    </div>
   </div>
 </section>
 
