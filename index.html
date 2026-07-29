@@ -235,7 +235,8 @@ section.page-section:nth-of-type(even) .species-card{background:var(--parchment-
 .map-illustration img{width:100%;height:auto;display:block;transition:opacity .2s ease}
 .map-illustration:hover img{opacity:.92}
 @media(max-width:640px){
-  .map-illustration{position:relative;left:50%;right:50%;width:100vw;margin-left:-50vw;margin-right:-50vw;border-left:none;border-right:none}
+  .map-illustration{position:relative;left:50%;right:50%;width:100vw;margin-left:-50vw;margin-right:-50vw;border-left:none;border-right:none;overflow-x:auto;-webkit-overflow-scrolling:touch;cursor:default}
+  .map-illustration img{width:960px;max-width:none}
 }
 .zone-map-note{font-size:12px;color:var(--ink-lt);font-style:italic;line-height:1.6}
 
@@ -929,7 +930,7 @@ section.page-section:nth-of-type(even) .cwc-block{background:var(--parchment)}
       <h2>Around the Lodge</h2>
       <span class="rule"></span>
     </div>
-    <p class="reveal d1">The official illustrated map of the property — tap to view full size.</p>
+    <p class="reveal d1">The official illustrated map of the property — swipe to explore, or tap to view full size.</p>
 
     <div class="photo-ph reveal d1">
       <span class="ph-label">[Photo — aerial view of the lodge]</span>
